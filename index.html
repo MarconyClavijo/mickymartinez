@@ -115,16 +115,22 @@
   <a href="https://wa.me/51979541115" class="whatsapp" target="_blank">📱</a>
 
   <script>
-    // Código para intentar cargar el último video en vivo automáticamente
-    async function loadFacebookLive() {
-      const container = document.getElementById('fb-live');
-      const pageUrl = 'https://www.facebook.com/radiomarcony';
-      const embedCode = `
-        <iframe src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(pageUrl)}&show_text=false&autoplay=1" allowfullscreen></iframe>
-      `;
-      container.innerHTML = embedCode;
-    }
-    window.onload = loadFacebookLive;
-  </script>
+  // Cargar transmisión en vivo desde la página pública de Facebook
+  async function loadFacebookLive() {
+    const container = document.getElementById('fb-live');
+    const pageUrl = 'https://www.facebook.com/radiomarcony'; // Página pública
+
+    const embedCode = `
+      <iframe 
+        src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(pageUrl)}&show_text=false&autoplay=1" 
+        width="720" height="400" style="border:none;overflow:hidden" 
+        scrolling="no" frameborder="0" allowfullscreen="true" 
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+      </iframe>
+    `;
+    container.innerHTML = embedCode;
+  }
+  window.onload = loadFacebookLive;
+</script>
 </body>
 </html>
