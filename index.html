@@ -120,13 +120,15 @@
     const container = document.getElementById('fb-live');
     const pageUrl = 'https://www.facebook.com/radiomarcony'; // Página pública
 
-    const embedCode = `
-      <iframe 
-        src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(pageUrl)}&show_text=false&autoplay=1" 
-        width="720" height="400" style="border:none;overflow:hidden" 
-        scrolling="no" frameborder="0" allowfullscreen="true" 
-        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-      </iframe>
+    <section id="en-vivo" class="live">
+  <h2>Transmisión en Vivo</h2>
+  <iframe 
+    src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/radiomarcony/videos/9797017830426864&show_text=false&autoplay=1" 
+    width="720" height="400" style="border:none;overflow:hidden" 
+    scrolling="no" frameborder="0" allowfullscreen="true" 
+    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+  </iframe>
+  </section>
     `;
     container.innerHTML = embedCode;
   }
