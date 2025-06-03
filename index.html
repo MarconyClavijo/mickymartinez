@@ -1,173 +1,130 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Micky Martínez Producciones</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
+      font-family: 'Montserrat', sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: white;
+      padding: 0;
+      background: linear-gradient(to right, #ffdd00, #ff4e00);
+      color: #fff;
     }
     header {
-      background-color: #222;
+      background: #000000cc;
       padding: 20px;
       text-align: center;
     }
     header img {
-      height: 60px;
+      max-height: 100px;
+    }
+    h1 {
+      margin: 10px 0 0;
     }
     nav {
-      text-align: center;
-      background: #333;
-      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: #222;
+      padding: 10px;
     }
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 15px;
       font-weight: bold;
     }
     section {
       padding: 40px 20px;
       text-align: center;
     }
-    iframe {
-      width: 90%;
-      max-width: 900px;
-      height: 500px;
+    .live iframe {
+      width: 100%;
+      max-width: 720px;
+      height: 400px;
       border: none;
     }
     .gallery img {
-      width: 200px;
+      width: 300px;
       margin: 10px;
-      border-radius: 10px;
+      border-radius: 12px;
     }
     footer {
-      background: #222;
+      background: #000000cc;
       text-align: center;
       padding: 20px;
-      font-size: 14px;
+      position: relative;
     }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="https://via.placeholder.com/200x60?text=Micky+Martinez+Producciones" alt="Logo provisional">
-  </header>  <nav>
-    <a href="#transmision">En Vivo</a>
-    <a href="#galeria">Galería</a>
-    <a href="#contacto">Contacto</a>
-  </nav>  <section id="transmision">
-    <h2>🔴 Transmisión en Vivo</h2>
-    <p>Disfruta de nuestra señal en vivo desde cualquier lugar del mundo.</p>
-    <iframe src="https://youtu.be/men6WzlFYl8" allowfullscreen></iframe>
-  </section>  <section id="galeria">
-    <h2>Galería de Eventos</h2>
-    <div class="gallery">
-      <img src="https://via.placeholder.com/200x120?text=Evento+1" alt="Evento 1">
-      <img src="https://via.placeholder.com/200x120?text=Evento+2" alt="Evento 2">
-      <img src="https://via.placeholder.com/200x120?text=Evento+3" alt="Evento 3">
-    </div>
-  </section>  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>Para contrataciones y transmisiones: <br>
-    📧 <a href="mailto:contacto@mickymartinez.com" style="color: #0af;">contacto@mickymartinez.com</a><br>
-    📱 WhatsApp: <a href="https://wa.me/51999999999" style="color: #0af;">+51 999 999 999</a></p>
-  </section>  <footer>
-    &copy; 2025 Micky Martínez Producciones. Todos los derechos reservados.
-  </footer>
-</body>
-</html>
-Marcony
-<!DOCTYPE html><html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Micky Martínez Producciones</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #111;
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
       color: white;
-    }
-    header {
-      background-color: #222;
-      padding: 20px;
-      text-align: center;
-    }
-    header img {
+      border-radius: 50%;
+      width: 60px;
       height: 60px;
-    }
-    nav {
-      text-align: center;
-      background: #333;
-      padding: 10px 0;
-    }
-    nav a {
-      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
       text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-    section {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    iframe {
-      width: 90%;
-      max-width: 900px;
-      height: 500px;
-      border: none;
-    }
-    .gallery img {
-      width: 200px;
-      margin: 10px;
-      border-radius: 10px;
-    }
-    footer {
-      background: #222;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://via.placeholder.com/200x60?text=Micky+Martinez+Producciones" alt="Logo provisional">
-  </header>  <nav>
-    <a href="#transmision">En Vivo</a>
+    <img src="logo.png" alt="Micky Martínez Producciones">
+    <h1>Micky Martínez Producciones</h1>
+    <p>¡Pasión por el espectáculo!</p>
+  </header>
+
+  <nav>
+    <a href="#inicio">Inicio</a>
     <a href="#galeria">Galería</a>
+    <a href="#en-vivo">En Vivo</a>
     <a href="#contacto">Contacto</a>
-  </nav>  <section id="transmision">
-    <h2>🔴 Transmisión en Vivo</h2>
-    <p>Disfruta de nuestra señal en vivo desde cualquier lugar del mundo.</p>
-    <iframe 
-  src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F100066374630602%2Fvideos%2F4107922722820859%2F&show_text=false&autoplay=1" 
-  width="800" 
-  height="450" 
-  style="border:none;overflow:hidden" 
-  scrolling="no" 
-  frameborder="0" 
-  allowfullscreen="true" 
-  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-</iframe>
-    <h2>Galería de Eventos</h2>
-    <div class="gallery">
-      <img src="https://via.placeholder.com/200x120?text=Evento+1" alt="Evento 1">
-      <img src="https://via.placeholder.com/200x120?text=Evento+2" alt="Evento 2">
-      <img src="https://via.placeholder.com/200x120?text=Evento+3" alt="Evento 3">
-    </div>
-  </section>  <section id="contacto">
+  </nav>
+
+  <section id="en-vivo" class="live">
+    <h2>Transmisión en Vivo</h2>
+    <p>Si estamos en vivo por Facebook, aparecerá aquí automáticamente:</p>
+    <div id="fb-live"></div>
+  </section>
+
+  <section id="galeria" class="gallery">
+    <h2>Galería</h2>
+    <img src="img1.jpg" alt="Evento 1">
+    <img src="img2.jpg" alt="Evento 2">
+    <img src="img3.jpg" alt="Evento 3">
+  </section>
+
+  <section id="contacto">
     <h2>Contacto</h2>
-    <p>Para contrataciones y transmisiones: <br>
-    📧 <a href="mailto:contacto@mickymartinez.com" style="color: #0af;">contacto@mickymartinez.com</a><br>
-    📱 WhatsApp: <a href="https://wa.me/51999999999" style="color: #0af;">+51 999 999 999</a></p>
-  </section>  <footer>
-    &copy; 2025 Micky Martínez Producciones. Todos los derechos reservados.
+    <p>WhatsApp: <a href="https://wa.me/51979541115" style="color: white; text-decoration: underline;">+51 979 541 115</a></p>
+    <p>Facebook: <a href="https://www.facebook.com/micky.martinez.794216" style="color: white; text-decoration: underline;">Ir a Facebook</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Micky Martínez Producciones</p>
   </footer>
+
+  <a href="https://wa.me/51979541115" class="whatsapp" target="_blank">📱</a>
+
+  <script>
+    // Código para intentar cargar el último video en vivo automáticamente
+    async function loadFacebookLive() {
+      const container = document.getElementById('fb-live');
+      const pageUrl = 'https://www.facebook.com/micky.martinez.794216';
+      const embedCode = `
+        <iframe src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(pageUrl)}&show_text=false&autoplay=1" allowfullscreen></iframe>
+      `;
+      container.innerHTML = embedCode;
+    }
+    window.onload = loadFacebookLive;
+  </script>
 </body>
 </html>
