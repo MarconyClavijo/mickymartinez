@@ -1,159 +1,256 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Radio Stereo M 101.5 FM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --rojo: #e60000;
       --amarillo: #ffd700;
       --negro: #111;
       --blanco: #fff;
+      --celeste: #0088cc;
+      --fondo-footer: #222;
     }
 
     body {
       margin: 0;
       font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, var(--rojo), var(--negro));
+      background: linear-gradient(to bottom, var(--celeste), #f44336);
       color: var(--blanco);
-      text-align: center;
     }
 
     header {
-      padding: 30px 20px;
-      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: var(--amarillo);
+      color: var(--negro);
+    }
+
+    .logo-box {
+      text-align: center;
+      margin-right: 20px;
     }
 
     header img.logo {
-      width: 200px;
+      width: 120px;
+      display: block;
+      animation: rebote 2s infinite ease-in-out;
     }
 
-    header h1 {
-      margin-top: 10px;
-      font-size: 2em;
-      color: var(--amarillo);
+    .extra-img {
+      width: 300px;
+      max-width: 100%;
+      background: linear-gradient(135deg, #ff6600, #e60000);
+      padding: 8px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #e60000a0;
     }
 
-    .tagline {
-      margin: 30px auto;
-      max-width: 800px;
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
     }
 
-    .tagline img {
-      width: 90%;
-      max-width: 700px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    .tagline p {
-      font-size: 1.5em;
-      font-weight: bold;
-      margin-top: 15px;
-      color: var(--amarillo);
+    .left-content {
+      max-width: 450px;
+      margin: 10px;
+      flex: 1 1 450px;
     }
 
     .player-box {
-      background: rgba(0, 0, 0, 0.5);
-      border: 2px solid var(--amarillo);
-      border-radius: 20px;
-      padding: 30px;
-      margin: 40px auto;
-      max-width: 500px;
+      background: #fff;
+      color: var(--negro);
+      border: 3px solid var(--amarillo);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px #ffd700;
+      text-align: center;
     }
 
     .player-box h2 {
-      margin-bottom: 15px;
-      color: var(--blanco);
+      color: var(--rojo);
+      margin-bottom: 10px;
     }
 
     audio {
       width: 100%;
-      outline: none;
       border-radius: 10px;
     }
 
-    .buttons {
-      margin: 30px 0;
+    .right-buttons {
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 200px;
+      flex-shrink: 0;
+      background: linear-gradient(to bottom right, #ffe066, #ff7b7b);
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #e60000a0;
     }
 
-    .buttons a {
-      display: inline-block;
-      background-color: var(--amarillo);
-      color: var(--negro);
-      padding: 12px 25px;
+    .right-buttons a {
+      display: block;
+      background: #fff;
+      color: var(--rojo);
+      text-align: center;
+      padding: 12px 15px;
       text-decoration: none;
-      margin: 10px;
       font-weight: bold;
       border-radius: 30px;
+      box-shadow: 0 0 10px #000;
       transition: 0.3s;
     }
 
-    .buttons a:hover {
-      background-color: var(--blanco);
-      color: var(--rojo);
+    .right-buttons a:hover {
+      background: var(--amarillo);
+      color: var(--negro);
     }
 
     footer {
-      background-color: #000;
+      background-color: var(--fondo-footer);
       padding: 15px;
       font-size: 14px;
-      color: #aaa;
+      color: #ddd;
+      text-align: center;
+      margin-top: 40px;
     }
 
-    @media (max-width: 600px) {
-      .tagline p {
-        font-size: 1.2em;
-        padding: 0 10px;
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
       }
 
-      .buttons a {
-        display: block;
-        margin: 10px auto;
-        width: 80%;
+      .logo-box {
+        margin-right: 10px;
       }
+
+      .extra-img {
+        width: 200px;
+      }
+
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .left-content {
+        max-width: 100%;
+        flex: none;
+      }
+
+      .right-buttons {
+        max-width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .right-buttons a {
+        flex: 1 1 45%;
+      }
+    }
+
+    @keyframes rebote {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes zoomOut {
+      from { transform: scale(1); opacity: 1; }
+      to { transform: scale(0.7); opacity: 0; }
     }
   </style>
 </head>
 <body>
+  <!-- Banner Modal Publicitario -->
+  <div id="modalBanner" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 9999; animation: fadeIn 0.6s ease-out;">
+    <div id="modalContent" style="position: relative; background: #fff; padding: 10px; border-radius: 15px; max-width: 420px; width: 90%; box-shadow: 0 0 20px #e60000; animation: zoomIn 0.7s ease-out;">
+      <button id="closeModal" style="position: absolute; top: 8px; right: 10px; background: #e60000; border: none; color: white; font-weight: bold; padding: 6px 12px; border-radius: 50%; cursor: pointer; font-size: 16px; box-shadow: 0 0 5px #000;">×</button>
+      <img src="https://imgfz.com/i/EH7tW0d.jpeg" alt="Publicidad Stereo M" style="width: 100%; border-radius: 10px;" />
+    </div>
+  </div>
 
-  <!-- Encabezado -->
   <header>
-    <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo">
-    <h1>Radio Stereo M 101.5 FM</h1>
+    <div class="logo-box">
+      <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
+    </div>
+    <img src="https://imgfz.com/i/Y7pyVg3.jpeg" alt="Artistas Stereo M" class="extra-img" />
   </header>
 
-  <!-- Frase destacada -->
-  <div class="tagline">
-    <img src="http://imgfz.com/i/LDzOfiX.png" alt="Cuna de los grandes">
-    <p>Radio Stereo M, la cuna de los grandes... ¡donde nacen los grandes artistas!</p>
+  <div class="main-content">
+    <div class="left-content">
+      <div class="player-box">
+        <h2>🎧 Escúchanos en Vivo</h2>
+        <audio controls autoplay>
+          <source src="https://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
+          Tu navegador no soporta audio HTML5.
+        </audio>
+        <div class="song-title" id="song-title">Cargando canción...</div>
+        <script>
+          async function fetchSongTitle() {
+            try {
+              const proxyUrl = "https://api.allorigins.win/get?url=";
+              const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1&nocache=" + Date.now());
+              const response = await fetch(proxyUrl + targetUrl);
+              const data = await response.json();
+              const parsedData = JSON.parse(data.contents);
+              const title = parsedData.songtitle || "Sin título";
+              document.getElementById("song-title").textContent = title;
+            } catch (error) {
+              document.getElementById("song-title").textContent = "Error al cargar canción";
+            }
+          }
+          fetchSongTitle();
+          setInterval(fetchSongTitle, 5000);
+        </script>
+      </div>
+    </div>
+
+    <div class="right-buttons">
+      <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
+      <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
+      <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
+      <a href="https://wa.me/51942883375" target="_blank">📢 Publicidad Aquí</a>
+    </div>
   </div>
 
-  <!-- Reproductor -->
-  <div class="player-box">
-    <h2>🎧 Escúchanos en Vivo</h2>
-    <audio controls autoplay>
-      <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
-      Tu navegador no soporta audio HTML5.
-    </audio>
-  </div>
-
-  <!-- Botones -->
-  <div class="buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
-    <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
-    <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
-    <a href="https://wa.me/51942883375" target="_blank">📢 Contrata Publicidad</a>
-    <a href="inscripcion-dia-del-padre.html">🎁 Inscribe a Papá</a>
-
-  </div>
-
-  <!-- Footer -->
   <footer>
     Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
   </footer>
 
+  <script>
+    const modal = document.getElementById('modalBanner');
+    const modalContent = document.getElementById('modalContent');
+    const closeBtn = document.getElementById('closeModal');
+
+    closeBtn.addEventListener('click', () => {
+      modalContent.style.animation = 'zoomOut 0.4s ease-in forwards';
+      modal.style.animation = 'fadeOut 0.4s ease-in forwards';
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 400);
+    });
+  </script>
 </body>
 </html>
