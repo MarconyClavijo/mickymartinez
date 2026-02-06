@@ -40,10 +40,10 @@ header h1{color:#ffe600}
   font-weight:bold;
 }
 
-/* GRID 3x */
+/* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:1rem;
   padding:1.5rem;
   max-width:1100px;
@@ -128,42 +128,50 @@ footer{
 <header>
   <img src="https://imgfz.com/i/bmnsNX4.png" class="logo-animado">
   <h1>Corporación La Fuerte</h1>
-  <a href="https://wa.me/51968093770" class="btn-contacto">📞 Contrata publicidad aquí</a>
+  <a href="https://wa.me/51968093770" class="btn-contacto">
+    📞 Contrata publicidad aquí
+  </a>
 </header>
 
 <main class="grid">
 
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe/7322/;">
+  <!-- LA FUERTE -->
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe:7322/stream">
     <img src="https://imgfz.com/i/fmdxHD8.png" class="logo">
     <h2>La Fuerte</h2>
     <button class="play-btn">▶</button>
   </div>
 
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe/7320/;">
+  <!-- LA JEFA -->
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe:7320/stream">
     <img src="https://imgfz.com/i/FRicwT8.png" class="logo">
     <h2>La Jefa</h2>
     <button class="play-btn">▶</button>
   </div>
 
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe/7324/;">
+  <!-- SAN FRANCISCO -->
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe:7324/stream">
     <img src="https://imgfz.com/i/bBApQu2.png" class="logo">
     <h2>San Francisco</h2>
     <button class="play-btn">▶</button>
   </div>
 
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe/8342/;">
+  <!-- MAXIMA -->
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe:8342/stream">
     <img src="https://imgfz.com/i/bVMWlXD.png" class="logo">
     <h2>Máxima</h2>
     <button class="play-btn">▶</button>
   </div>
 
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe/8464/;">
+  <!-- LA CUMBIAMBERA -->
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe:8464/stream">
     <img src="https://imgfz.com/i/J89AMPT.png" class="logo">
     <h2>La Cumbiambera</h2>
     <button class="play-btn">▶</button>
   </div>
 
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe/8466/;">
+  <!-- LA RAYA -->
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe:8466/stream">
     <img src="https://imgfz.com/i/zauB0Id.png" class="logo">
     <h2>La Raya</h2>
     <button class="play-btn">▶</button>
@@ -173,8 +181,8 @@ footer{
 
 <footer>© 2025 Corporación La Fuerte</footer>
 
-<!-- AUDIO REAL -->
-<audio id="player" playsinline></audio>
+<!-- AUDIO -->
+<audio id="player" playsinline preload="none"></audio>
 
 <script>
 const player = document.getElementById("player");
@@ -186,32 +194,34 @@ document.querySelectorAll(".card").forEach(card=>{
   const stream = card.dataset.stream;
 
   btn.addEventListener("click",()=>{
+
     if(currentCard && currentCard !== card){
       player.pause();
       player.src = "";
       currentBtn.classList.remove("playing");
-      currentBtn.textContent="▶";
+      currentBtn.textContent = "▶";
       currentCard.classList.remove("activa");
     }
 
     if(player.paused || currentCard !== card){
       player.src = stream + "?nocache=" + Date.now();
+      player.type = "audio/mpeg";
       player.load();
       player.play();
 
       btn.classList.add("playing");
-      btn.textContent="⏹";
+      btn.textContent = "⏹";
       card.classList.add("activa");
 
       currentBtn = btn;
       currentCard = card;
-    }else{
+    } else {
       player.pause();
-      player.src="";
+      player.src = "";
       player.load();
 
       btn.classList.remove("playing");
-      btn.textContent="▶";
+      btn.textContent = "▶";
       card.classList.remove("activa");
 
       currentCard = null;
