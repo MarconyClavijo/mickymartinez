@@ -15,13 +15,13 @@ body{
   color:#fff;
 }
 
-/* ===== ENCABEZADO ===== */
+/* ENCABEZADO */
 header{
   text-align:center;
   padding:2rem 1rem;
 }
 .logo-animado{
-  width:140px;
+  width:150px;
   animation:pulse 2s infinite;
 }
 @keyframes pulse{
@@ -29,21 +29,18 @@ header{
   50%{transform:scale(1.05)}
   100%{transform:scale(1)}
 }
-header h1{
-  margin:.8rem 0;
-  color:#ffe600;
-}
+header h1{color:#ffe600}
 .btn-contacto{
   display:inline-block;
   background:#ffe600;
   color:#000;
   padding:10px 20px;
   border-radius:25px;
-  font-weight:bold;
   text-decoration:none;
+  font-weight:bold;
 }
 
-/* ===== GRID ===== */
+/* GRID 3x */
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -53,7 +50,7 @@ header h1{
   margin:auto;
 }
 
-/* ===== CARD ===== */
+/* CARD */
 .card{
   background:#1c263d;
   border:2px solid #ff5252;
@@ -85,29 +82,26 @@ header h1{
 .logo{
   width:90px;
   height:90px;
-  object-fit:contain;
   background:#fff;
   border-radius:10px;
   padding:5px;
+  object-fit:contain;
 }
 
 h2{
-  margin:.7rem 0;
-  color:#ffe600;
   font-size:1rem;
+  color:#ffe600;
 }
 
-/* ===== BOTON PLAY ===== */
+/* BOTON */
 .play-btn{
-  width:50px;
-  height:50px;
+  width:52px;
+  height:52px;
   border-radius:50%;
   border:none;
   background:#ffe600;
-  color:#000;
   font-size:20px;
   cursor:pointer;
-  transition:.3s;
 }
 .play-btn.playing{
   background:#ff3b3b;
@@ -177,47 +171,50 @@ footer{
 
 </main>
 
-<footer>
-© 2025 Corporación La Fuerte. Todos los derechos reservados.
-</footer>
+<footer>© 2025 Corporación La Fuerte</footer>
+
+<!-- AUDIO REAL -->
+<audio id="player" playsinline></audio>
 
 <script>
-let currentAudio=null;
-let currentBtn=null;
-let currentCard=null;
+const player = document.getElementById("player");
+let currentBtn = null;
+let currentCard = null;
 
-document.querySelectorAll('.card').forEach(card=>{
-  const btn=card.querySelector('.play-btn');
-  btn.addEventListener('click',()=>{
-    if(currentAudio && currentAudio!==card.audio){
-      currentAudio.pause();
-      currentAudio.src="";
+document.querySelectorAll(".card").forEach(card=>{
+  const btn = card.querySelector(".play-btn");
+  const stream = card.dataset.stream;
+
+  btn.addEventListener("click",()=>{
+    if(currentCard && currentCard !== card){
+      player.pause();
+      player.src = "";
       currentBtn.classList.remove("playing");
       currentBtn.textContent="▶";
       currentCard.classList.remove("activa");
     }
 
-    if(!card.audio){
-      card.audio=new Audio(card.dataset.stream+"?t="+Date.now());
-      card.audio.preload="none";
-    }
+    if(player.paused || currentCard !== card){
+      player.src = stream + "?nocache=" + Date.now();
+      player.load();
+      player.play();
 
-    if(card.audio.paused){
-      card.audio.src=card.dataset.stream+"?t="+Date.now();
-      card.audio.play();
       btn.classList.add("playing");
       btn.textContent="⏹";
       card.classList.add("activa");
-      currentAudio=card.audio;
-      currentBtn=btn;
-      currentCard=card;
+
+      currentBtn = btn;
+      currentCard = card;
     }else{
-      card.audio.pause();
-      card.audio.src="";
+      player.pause();
+      player.src="";
+      player.load();
+
       btn.classList.remove("playing");
       btn.textContent="▶";
       card.classList.remove("activa");
-      currentAudio=null;
+
+      currentCard = null;
     }
   });
 });
