@@ -1,295 +1,227 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Radio Stereo M 101.5 FM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --rojo: #e60000;
-      --amarillo: #ffd700;
-      --negro: #111;
-      --blanco: #fff;
-      --celeste: #0088cc;
-      --fondo-footer: #222;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporación La Fuerte</title>
 
-    body {
-      margin: 0;
-      font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, var(--celeste), #f44336);
-      color: var(--blanco);
-    }
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    header {
-      display: flex;
-      align-items: center;
-      padding: 15px 20px;
-      background-color: var(--amarillo);
-      color: var(--negro);
-    }
+<style>
+body{
+  margin:0;
+  font-family:'Montserrat',sans-serif;
+  background:#0f1e3a;
+  color:#fff;
+}
 
-    .logo-box {
-      text-align: center;
-      margin-right: 20px;
-    }
+/* ===== ENCABEZADO ===== */
+header{
+  text-align:center;
+  padding:2rem 1rem;
+}
+.logo-animado{
+  width:140px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+  100%{transform:scale(1)}
+}
+header h1{
+  margin:.8rem 0;
+  color:#ffe600;
+}
+.btn-contacto{
+  display:inline-block;
+  background:#ffe600;
+  color:#000;
+  padding:10px 20px;
+  border-radius:25px;
+  font-weight:bold;
+  text-decoration:none;
+}
 
-    header img.logo {
-      width: 120px;
-      display: block;
-      animation: rebote 2s infinite ease-in-out;
-    }
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  padding:1.5rem;
+  max-width:1100px;
+  margin:auto;
+}
 
-    .slogan {
-      margin-top: 8px;
-      font-size: 1em;
-      color: var(--rojo);
-      font-weight: bold;
-      opacity: 0;
-      animation: entrarSlogan 1.2s ease-out forwards;
-      animation-delay: 1.7s;
-    }
+/* ===== CARD ===== */
+.card{
+  background:#1c263d;
+  border:2px solid #ff5252;
+  border-radius:18px;
+  padding:1rem;
+  text-align:center;
+  position:relative;
+}
+.card.activa{
+  border-color:#ffe600;
+  box-shadow:0 0 20px rgba(255,230,0,.8);
+}
+.card.activa::before{
+  content:"🔴 EN VIVO";
+  position:absolute;
+  top:8px;
+  right:8px;
+  background:red;
+  padding:3px 7px;
+  font-size:.75rem;
+  border-radius:12px;
+  animation:blink 1s infinite;
+}
+@keyframes blink{
+  0%,100%{opacity:1}
+  50%{opacity:.4}
+}
 
-    .extra-img {
-      width: 300px;
-      max-width: 100%;
-      background: linear-gradient(135deg, #ff6600, #e60000);
-      padding: 8px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #e60000a0;
-    }
+.logo{
+  width:90px;
+  height:90px;
+  object-fit:contain;
+  background:#fff;
+  border-radius:10px;
+  padding:5px;
+}
 
-    .main-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-    }
+h2{
+  margin:.7rem 0;
+  color:#ffe600;
+  font-size:1rem;
+}
 
-    .left-content {
-      max-width: 450px;
-      margin: 10px;
-      flex: 1 1 450px;
-    }
+/* ===== BOTON PLAY ===== */
+.play-btn{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:none;
+  background:#ffe600;
+  color:#000;
+  font-size:20px;
+  cursor:pointer;
+  transition:.3s;
+}
+.play-btn.playing{
+  background:#ff3b3b;
+  color:#fff;
+  animation:pulseBtn 1s infinite;
+}
+@keyframes pulseBtn{
+  0%{box-shadow:0 0 0 0 rgba(255,59,59,.7)}
+  70%{box-shadow:0 0 0 15px rgba(255,59,59,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,59,59,0)}
+}
 
-    .player-box {
-      background: #fff;
-      color: var(--negro);
-      border: 3px solid var(--amarillo);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 15px #ffd700;
-      text-align: center;
-    }
-
-    .player-box h2 {
-      color: var(--rojo);
-      margin-bottom: 10px;
-    }
-
-    .custom-player {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      animation: zoomIn 0.8s ease;
-    }
-
-    .custom-player button {
-      background-color: var(--rojo);
-      color: white;
-      border: none;
-      padding: 14px 30px;
-      font-size: 1.1em;
-      font-weight: bold;
-      border-radius: 35px;
-      cursor: pointer;
-      box-shadow: 0 0 12px #00000080;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .custom-player button:hover {
-      background-color: var(--amarillo);
-      color: var(--negro);
-      transform: scale(1.05);
-    }
-
-    .right-buttons {
-      margin: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 200px;
-      flex-shrink: 0;
-      background: linear-gradient(to bottom right, #ffe066, #ff7b7b);
-      padding: 15px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #e60000a0;
-    }
-
-    .right-buttons a {
-      display: block;
-      background: #fff;
-      color: var(--rojo);
-      text-align: center;
-      padding: 12px 15px;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 30px;
-      box-shadow: 0 0 10px #000;
-      transition: 0.3s;
-    }
-
-    .right-buttons a:hover {
-      background: var(--amarillo);
-      color: var(--negro);
-    }
-
-    footer {
-      background-color: var(--fondo-footer);
-      padding: 15px;
-      font-size: 14px;
-      color: #ddd;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    @media screen and (max-width: 768px) {
-      header {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .logo-box {
-        margin-right: 10px;
-      }
-
-      .extra-img {
-        width: 200px;
-      }
-
-      .main-content {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .left-content {
-        max-width: 100%;
-        flex: none;
-      }
-
-      .right-buttons {
-        max-width: 100%;
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .right-buttons a {
-        flex: 1 1 45%;
-      }
-    }
-
-    @keyframes entrarSlogan {
-      0% { opacity: 0; transform: translateY(30px) scale(0.9); }
-      60% { opacity: 1; transform: translateY(-5px) scale(1.05); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes rebote {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes zoomIn {
-      0% { transform: scale(0.5); opacity: 0; }
-      70% { transform: scale(1.05); opacity: 1; }
-      100% { transform: scale(1); }
-    }
-  </style>
+footer{
+  text-align:center;
+  padding:1.5rem;
+  font-size:.8rem;
+  color:#aaa;
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <div class="logo-box">
-      <a href="https://radiostereom.com/" target="_blank">
-        <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
-      </a>
-      <div class="slogan">La Radio Papá 🎙️</div>
-    </div>
-    <img src="http://imgfz.com/i/xgID1Gn.jpeg" alt="Artistas Stereo M" class="extra-img" />
-  </header>
 
-  <div class="main-content">
-    <div class="left-content">
-      <div class="player-box">
-        <h2>🎧 Escúchanos en Vivo</h2>
-        <audio id="radio-player">
-          <source src="https://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
-          Tu navegador no soporta audio HTML5.
-        </audio>
+<header>
+  <img src="https://imgfz.com/i/bmnsNX4.png" class="logo-animado">
+  <h1>Corporación La Fuerte</h1>
+  <a href="https://wa.me/51968093770" class="btn-contacto">📞 Contrata publicidad aquí</a>
+</header>
 
-        <div class="custom-player">
-          <button id="toggle-btn">▶️ Escuchar</button>
-        </div>
+<main class="grid">
 
-        <div class="song-title" id="song-title">Cargando canción...</div>
-        <script>
-          async function fetchSongTitle() {
-            try {
-              const proxyUrl = "https://api.allorigins.win/get?url=";
-              const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1&nocache=" + Date.now());
-              const response = await fetch(proxyUrl + targetUrl);
-              const data = await response.json();
-              const parsedData = JSON.parse(data.contents);
-              const title = parsedData.songtitle || "Sin título";
-              document.getElementById("song-title").textContent = title;
-            } catch (error) {
-              document.getElementById("song-title").textContent = "Error al cargar canción";
-            }
-          }
-          fetchSongTitle();
-          setInterval(fetchSongTitle, 5000);
-        </script>
-      </div>
-    </div>
-
-    <div class="right-buttons">
-      <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
-      <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
-      <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
-      <a href="https://wa.me/51942883375" target="_blank">📢 Publicidad Aquí</a>
-    </div>
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe/7322/;">
+    <img src="https://imgfz.com/i/fmdxHD8.png" class="logo">
+    <h2>La Fuerte</h2>
+    <button class="play-btn">▶</button>
   </div>
 
-  <footer>
-    Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
-  </footer>
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe/7320/;">
+    <img src="https://imgfz.com/i/FRicwT8.png" class="logo">
+    <h2>La Jefa</h2>
+    <button class="play-btn">▶</button>
+  </div>
 
-  <script>
-    const audio = document.getElementById('radio-player');
-    const toggleBtn = document.getElementById('toggle-btn');
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe/7324/;">
+    <img src="https://imgfz.com/i/bBApQu2.png" class="logo">
+    <h2>San Francisco</h2>
+    <button class="play-btn">▶</button>
+  </div>
 
-    let isPlaying = false;
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe/8342/;">
+    <img src="https://imgfz.com/i/bVMWlXD.png" class="logo">
+    <h2>Máxima</h2>
+    <button class="play-btn">▶</button>
+  </div>
 
-    toggleBtn.addEventListener('click', () => {
-      if (!isPlaying) {
-        audio.load(); // Recarga para evitar buffering largo
-        audio.play();
-        toggleBtn.textContent = '⏹️ Detener';
-        isPlaying = true;
-      } else {
-        audio.pause();
-        audio.currentTime = 0;
-        toggleBtn.textContent = '▶️ Escuchar';
-        isPlaying = false;
-      }
-    });
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe/8464/;">
+    <img src="https://imgfz.com/i/J89AMPT.png" class="logo">
+    <h2>La Cumbiambera</h2>
+    <button class="play-btn">▶</button>
+  </div>
 
-    audio.addEventListener('ended', () => {
-      toggleBtn.textContent = '▶️ Escuchar';
-      isPlaying = false;
-    });
-  </script>
+  <div class="card" data-stream="https://panelautodj.innovatestream.pe/8466/;">
+    <img src="https://imgfz.com/i/zauB0Id.png" class="logo">
+    <h2>La Raya</h2>
+    <button class="play-btn">▶</button>
+  </div>
+
+</main>
+
+<footer>
+© 2025 Corporación La Fuerte. Todos los derechos reservados.
+</footer>
+
+<script>
+let currentAudio=null;
+let currentBtn=null;
+let currentCard=null;
+
+document.querySelectorAll('.card').forEach(card=>{
+  const btn=card.querySelector('.play-btn');
+  btn.addEventListener('click',()=>{
+    if(currentAudio && currentAudio!==card.audio){
+      currentAudio.pause();
+      currentAudio.src="";
+      currentBtn.classList.remove("playing");
+      currentBtn.textContent="▶";
+      currentCard.classList.remove("activa");
+    }
+
+    if(!card.audio){
+      card.audio=new Audio(card.dataset.stream+"?t="+Date.now());
+      card.audio.preload="none";
+    }
+
+    if(card.audio.paused){
+      card.audio.src=card.dataset.stream+"?t="+Date.now();
+      card.audio.play();
+      btn.classList.add("playing");
+      btn.textContent="⏹";
+      card.classList.add("activa");
+      currentAudio=card.audio;
+      currentBtn=btn;
+      currentCard=card;
+    }else{
+      card.audio.pause();
+      card.audio.src="";
+      btn.classList.remove("playing");
+      btn.textContent="▶";
+      card.classList.remove("activa");
+      currentAudio=null;
+    }
+  });
+});
+</script>
+
 </body>
 </html>
