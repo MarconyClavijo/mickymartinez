@@ -1,234 +1,313 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Corporación La Fuerte</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    if (location.protocol === 'http:') {
+      location.href = location.href.replace('http:', 'https:');
+    }
+  </script>
+  <title>Corporación La Fuerte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #fff;
+    }
+    .logo-animado {
+      width: 300px;
+      margin: 2rem auto 0;
+      display: block;
+      animation: entradaLogo 2s ease-out forwards, resplandor 3s infinite alternate;
+    }
+    @keyframes entradaLogo {
+      0% { transform: scale(0.2); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes resplandor {
+      0% { filter: drop-shadow(0 0 10px #ff6f61); }
+      100% { filter: drop-shadow(0 0 25px #ffcc00); }
+    }
+    header {
+      background: #0f3460;
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 1rem 0 0;
+      color: #f9f871;
+      text-shadow: 2px 2px 8px #000;
+    }
+    .btn-contacto {
+      display: inline-block;
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      box-shadow: 0 4px 15px rgba(255, 204, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+    .btn-contacto:hover {
+      background: #ff6f61;
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(255, 111, 97, 0.7);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1300px;
+      margin: auto;
+    }
+    .card {
+      background: #222831;
+      border: 2px solid #ff6f61;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 10px 25px rgba(255, 111, 97, 0.5);
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    /* Nueva animación para la tarjeta activa */
+    .card.activa {
+      animation: brilloPulsante 2.5s ease-in-out infinite;
+      box-shadow:
+        0 0 15px 3px rgba(255, 111, 97, 0.8),
+        0 0 30px 6px rgba(255, 204, 0, 0.6),
+        inset 0 0 15px 2px rgba(255, 111, 97, 0.9);
+      border-color: #ffcc00;
+    }
 
-<style>
-body{
-  margin:0;
-  font-family:'Montserrat',sans-serif;
-  background:#0f1e3a;
-  color:#fff;
-}
+    @keyframes brilloPulsante {
+      0%, 100% {
+        box-shadow:
+          0 0 15px 3px rgba(255, 111, 97, 0.8),
+          0 0 30px 6px rgba(255, 204, 0, 0.6),
+          inset 0 0 15px 2px rgba(255, 111, 97, 0.9);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow:
+          0 0 25px 6px rgba(255, 111, 97, 1),
+          0 0 40px 8px rgba(255, 204, 0, 0.9),
+          inset 0 0 25px 4px rgba(255, 111, 97, 1);
+        transform: scale(1.02);
+      }
+    }
 
-/* ENCABEZADO */
-header{
-  text-align:center;
-  padding:2rem 1rem;
-}
-.logo-animado{
-  width:150px;
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.05)}
-  100%{transform:scale(1)}
-}
-header h1{color:#ffe600}
-.btn-contacto{
-  display:inline-block;
-  background:#ffe600;
-  color:#000;
-  padding:10px 20px;
-  border-radius:25px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1rem;
-  padding:1.5rem;
-  max-width:1100px;
-  margin:auto;
-}
-
-/* CARD */
-.card{
-  background:#1c263d;
-  border:2px solid #ff5252;
-  border-radius:18px;
-  padding:1rem;
-  text-align:center;
-  position:relative;
-}
-.card.activa{
-  border-color:#ffe600;
-  box-shadow:0 0 20px rgba(255,230,0,.8);
-}
-.card.activa::before{
-  content:"🔴 EN VIVO";
-  position:absolute;
-  top:8px;
-  right:8px;
-  background:red;
-  padding:3px 7px;
-  font-size:.75rem;
-  border-radius:12px;
-  animation:blink 1s infinite;
-}
-@keyframes blink{
-  0%,100%{opacity:1}
-  50%{opacity:.4}
-}
-
-.logo{
-  width:90px;
-  height:90px;
-  background:#fff;
-  border-radius:10px;
-  padding:5px;
-  object-fit:contain;
-}
-
-h2{
-  font-size:1rem;
-  color:#ffe600;
-}
-
-/* BOTON */
-.play-btn{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  border:none;
-  background:#ffe600;
-  font-size:20px;
-  cursor:pointer;
-}
-.play-btn.playing{
-  background:#ff3b3b;
-  color:#fff;
-  animation:pulseBtn 1s infinite;
-}
-@keyframes pulseBtn{
-  0%{box-shadow:0 0 0 0 rgba(255,59,59,.7)}
-  70%{box-shadow:0 0 0 15px rgba(255,59,59,0)}
-  100%{box-shadow:0 0 0 0 rgba(255,59,59,0)}
-}
-
-footer{
-  text-align:center;
-  padding:1.5rem;
-  font-size:.8rem;
-  color:#aaa;
-}
-</style>
+    .card.activa::before {
+      content: "🔴 EN VIVO";
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #ff3b3b;
+      padding: 3px 8px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      animation: parpadeo 1.2s infinite;
+      box-shadow: 0 0 6px #ff3b3b;
+      pointer-events: none;
+      user-select: none;
+      z-index: 10;
+      white-space: nowrap;
+    }
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      background: #fff;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .card h2 {
+      color: #ffcc00;
+      margin-bottom: 1rem;
+    }
+    .redes {
+      margin-top: 1rem;
+    }
+    .btn-red {
+      display: inline-block;
+      margin: 5px;
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
+      font-size: 0.9rem;
+    }
+    .facebook { background: #3b5998; color: white; }
+    .facebook:hover { background: #2d4373; }
+    .whatsapp { background: #25D366; color: white; }
+    .whatsapp:hover { background: #1ebe5b; }
+    audio {
+      width: 100%;
+      border-radius: 10px;
+      outline: none;
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      background: #0f0f0f;
+      color: #aaa;
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <img src="https://imgfz.com/i/bmnsNX4.png" alt="Logo Corporación La Fuerte" class="logo-animado" />
+    <h1>Corporación La Fuerte</h1>
+    <p>
+      <a href="https://wa.me/51968093770" class="btn-contacto" target="_blank" rel="noopener noreferrer">
+        📞 Contrata publicidad aquí: 51968093770
+      </a>
+    </p>
+  </header>
 
-<header>
-  <img src="https://imgfz.com/i/bmnsNX4.png" class="logo-animado">
-  <h1>Corporación La Fuerte</h1>
-  <a href="https://wa.me/51968093770" class="btn-contacto">
-    📞 Contrata publicidad aquí
-  </a>
-</header>
+  <main class="grid">
 
-<main class="grid">
+    <!-- La Fuerte -->
+    <div class="card">
+      <img src="https://imgfz.com/i/fmdxHD8.png" alt="La Fuerte" class="logo" />
+      <h2>La Fuerte</h2>
+      <div class="redes">
+        <a href="https://www.facebook.com/share/15VXL1LjJb/" class="btn-red facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://wa.me/51981603469" class="btn-red whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+      <audio controls src="https://panelautodj.innovatestream.pe/7322/;"></audio>
+    </div>
 
-  <!-- LA FUERTE -->
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe:7322/stream">
-    <img src="https://imgfz.com/i/fmdxHD8.png" class="logo">
-    <h2>La Fuerte</h2>
-    <button class="play-btn">▶</button>
-  </div>
+    <!-- La Jefa -->
+    <div class="card">
+      <img src="https://imgfz.com/i/FRicwT8.png" alt="La Jefa" class="logo" />
+      <h2>La Jefa</h2>
+      <div class="redes">
+        <a href="https://www.facebook.com/share/1Ej5wJMZS6/" class="btn-red facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://wa.me/51957947659" class="btn-red whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+      <audio controls src="https://panelautodj.innovatestream.pe/7320/;"></audio>
+    </div>
 
-  <!-- LA JEFA -->
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe:7320/stream">
-    <img src="https://imgfz.com/i/FRicwT8.png" class="logo">
-    <h2>La Jefa</h2>
-    <button class="play-btn">▶</button>
-  </div>
+    <!-- San Francisco -->
+    <div class="card">
+      <img src="https://imgfz.com/i/bBApQu2.png" alt="San Francisco" class="logo" />
+      <h2>San Francisco</h2>
+      <div class="redes">
+        <a href="https://www.facebook.com/share/1Bs468FUoA/" class="btn-red facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://wa.me/51966332309" class="btn-red whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+      <audio controls src="https://panelautodj.innovatestream.pe/7324/;"></audio>
+    </div>
 
-  <!-- SAN FRANCISCO -->
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe:7324/stream">
-    <img src="https://imgfz.com/i/bBApQu2.png" class="logo">
-    <h2>San Francisco</h2>
-    <button class="play-btn">▶</button>
-  </div>
+    <!-- Máxima -->
+    <div class="card">
+      <img src="https://imgfz.com/i/bVMWlXD.png" alt="Máxima" class="logo" />
+      <h2>Máxima</h2>
+      <div class="redes">
+        <a href="https://www.facebook.com/share/1BqFMXcYiR/" class="btn-red facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://wa.me/51968059127" class="btn-red whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+      <audio controls src="https://panelautodj.innovatestream.pe/8342/;"></audio>
+    </div>
 
-  <!-- MAXIMA -->
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe:8342/stream">
-    <img src="https://imgfz.com/i/bVMWlXD.png" class="logo">
-    <h2>Máxima</h2>
-    <button class="play-btn">▶</button>
-  </div>
+    <!-- La Cumbiambera -->
+    <div class="card">
+      <img src="https://imgfz.com/i/J89AMPT.png" alt="La Cumbiambera" class="logo" />
+      <h2>La Cumbiambera</h2>
+      <div class="redes">
+        <a href="https://www.facebook.com/share/1Zi652mGHs/" class="btn-red facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://wa.me/51968059127" class="btn-red whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+      <audio controls src="https://panelautodj.innovatestream.pe/8464/;"></audio>
+    </div>
 
-  <!-- LA CUMBIAMBERA -->
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe:8464/stream">
-    <img src="https://imgfz.com/i/J89AMPT.png" class="logo">
-    <h2>La Cumbiambera</h2>
-    <button class="play-btn">▶</button>
-  </div>
+    <!-- La Raya -->
+    <div class="card">
+      <img src="https://imgfz.com/i/zauB0Id.png" alt="La Raya" class="logo" />
+      <h2>La Raya</h2>
+      <div class="redes">
+        <a href="https://www.facebook.com/share/1EkJ4wUcLK/" class="btn-red facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://wa.me/51968059127" class="btn-red whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+      <audio controls src="https://panelautodj.innovatestream.pe/8466/;"></audio>
+    </div>
+  </main>
 
-  <!-- LA RAYA -->
-  <div class="card" data-stream="https://panelautodj.innovatestream.pe:8466/stream">
-    <img src="https://imgfz.com/i/zauB0Id.png" class="logo">
-    <h2>La Raya</h2>
-    <button class="play-btn">▶</button>
-  </div>
+  <footer>
+    © 2025 Corporación La Fuerte. Todos los derechos reservados.
+  </footer>
 
-</main>
+  <audio id="beep" src="https://www.soundjay.com/buttons/sounds/beep-07.mp3" preload="auto" style="display:none;"></audio>
 
-<footer>© 2025 Corporación La Fuerte</footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const beep = document.getElementById('beep');
+      const audioPlayers = Array.from(document.querySelectorAll('audio[controls]')).filter(a => a !== beep);
 
-<!-- AUDIO -->
-<audio id="player" playsinline preload="none"></audio>
+      audioPlayers.forEach(audio => {
+        audio.addEventListener('play', () => {
+          audioPlayers.forEach(other => {
+            if (other !== audio) other.pause();
+          });
 
-<script>
-const player = document.getElementById("player");
-let currentBtn = null;
-let currentCard = null;
+          document.querySelectorAll('.card').forEach(card => {
+            card.classList.remove('activa');
+          });
 
-document.querySelectorAll(".card").forEach(card=>{
-  const btn = card.querySelector(".play-btn");
-  const stream = card.dataset.stream;
+          const card = audio.closest('.card');
+          if (card) {
+            card.classList.add('activa');
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
 
-  btn.addEventListener("click",()=>{
+          beep.currentTime = 0;
+          beep.play();
+        });
 
-    if(currentCard && currentCard !== card){
-      player.pause();
-      player.src = "";
-      currentBtn.classList.remove("playing");
-      currentBtn.textContent = "▶";
-      currentCard.classList.remove("activa");
-    }
+        audio.addEventListener('pause', () => {
+          const card = audio.closest('.card');
+          if (card) {
+            card.classList.remove('activa');
+          }
+        });
+      });
 
-    if(player.paused || currentCard !== card){
-      player.src = stream + "?nocache=" + Date.now();
-      player.type = "audio/mpeg";
-      player.load();
-      player.play();
-
-      btn.classList.add("playing");
-      btn.textContent = "⏹";
-      card.classList.add("activa");
-
-      currentBtn = btn;
-      currentCard = card;
-    } else {
-      player.pause();
-      player.src = "";
-      player.load();
-
-      btn.classList.remove("playing");
-      btn.textContent = "▶";
-      card.classList.remove("activa");
-
-      currentCard = null;
-    }
-  });
-});
-</script>
-
+      const logos = document.querySelectorAll('.logo');
+      logos.forEach(logo => {
+        logo.addEventListener('click', () => {
+          const audio = logo.parentElement.querySelector('audio');
+          if (audio.paused) {
+            audio.play();
+          } else {
+            audio.pause();
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
