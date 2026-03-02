@@ -148,21 +148,27 @@ const statusText = document.getElementById("status");
 const logo = document.getElementById("logo");
 
 function toggleRadio(){
-
     if(radio.paused){
         radio.play();
-        button.innerText = "⏹ DETENER";
-        statusText.innerText = "🔴 EN VIVO";
-        logo.classList.add("spin");
     }else{
         radio.pause();
-        radio.currentTime = 0; // limpia buffer
-        button.innerText = "▶ ESCUCHAR EN VIVO";
-        statusText.innerText = "Radio detenida";
-        logo.classList.remove("spin");
+        radio.currentTime = 0;
     }
-
 }
+
+/* Cuando realmente empieza */
+radio.addEventListener("play", function(){
+    button.innerText = "⏹ DETENER";
+    statusText.innerText = "🔴 EN VIVO";
+    logo.classList.add("spin");
+});
+
+/* Cuando realmente se pausa (aunque sea por otra pestaña) */
+radio.addEventListener("pause", function(){
+    button.innerText = "▶ ESCUCHAR EN VIVO";
+    statusText.innerText = "Radio detenida";
+    logo.classList.remove("spin");
+});
 </script>
 
 </body>
