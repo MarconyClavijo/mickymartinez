@@ -122,9 +122,7 @@ class="logo" id="logo">
 <h1>MARCONY RADIO</h1>
 <div class="sub">TRANSMITIENDO EN VIVO 24/7</div>
 
-<audio id="radio" preload="none">
-<source src="https://radiostreaming.pro/8214/stream" type="audio/mpeg">
-</audio>
+<audio id="radio" preload="none"></audio>
 
 <button class="playBtn" id="btn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
 
@@ -142,28 +140,38 @@ Página creada por Marcony Clavijo
 </div>
 
 <script>
+const STREAM_URL = "https://radiostreaming.pro/8214/stream";
 const radio = document.getElementById("radio");
 const button = document.getElementById("btn");
 const statusText = document.getElementById("status");
 const logo = document.getElementById("logo");
 
+function startRadio(){
+    radio.src = STREAM_URL + "?t=" + new Date().getTime(); // fuerza conexión nueva
+    radio.load();
+    radio.play();
+}
+
+function stopRadio(){
+    radio.pause();
+    radio.removeAttribute("src"); // ELIMINA BUFFER REAL
+    radio.load();
+}
+
 function toggleRadio(){
     if(radio.paused){
-        radio.play();
+        startRadio();
     }else{
-        radio.pause();
-        radio.currentTime = 0;
+        stopRadio();
     }
 }
 
-/* Cuando realmente empieza */
 radio.addEventListener("play", function(){
     button.innerText = "⏹ DETENER";
     statusText.innerText = "🔴 EN VIVO";
     logo.classList.add("spin");
 });
 
-/* Cuando realmente se pausa (aunque sea por otra pestaña) */
 radio.addEventListener("pause", function(){
     button.innerText = "▶ ESCUCHAR EN VIVO";
     statusText.innerText = "Radio detenida";
