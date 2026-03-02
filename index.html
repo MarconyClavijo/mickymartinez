@@ -99,15 +99,10 @@ h1{
     text-decoration:none;
     color:white;
     font-size:14px;
-    transition:0.3s;
 }
 
 .fb{ background:#1877f2; }
 .wa{ background:#25d366; }
-
-.social a:hover{
-    transform:scale(1.1);
-}
 
 footer{
     margin-top:50px;
@@ -129,7 +124,7 @@ class="logo" id="logo">
 
 <audio id="radio" preload="none"></audio>
 
-<button class="playBtn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
+<button class="playBtn" id="btn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
 
 <div class="status" id="status">Radio detenida</div>
 
@@ -148,46 +143,46 @@ Página creada por Marcony Clavijo
 const STREAM_URL = "https://radiostreaming.pro/8214/stream";
 const radio = document.getElementById("radio");
 const statusText = document.getElementById("status");
-const button = document.querySelector(".playBtn");
+const button = document.getElementById("btn");
 const logo = document.getElementById("logo");
 
-function connectLive(){
+let isPlaying = false;
+
+function startRadio(){
     radio.src = STREAM_URL + "?t=" + new Date().getTime();
     radio.load();
     radio.play();
-}
+    isPlaying = true;
 
-function toggleRadio(){
-    if(radio.paused){
-        connectLive();
-    }else{
-        radio.pause();
-        radio.removeAttribute("src");
-        radio.load();
-    }
-}
-
-radio.addEventListener("play", function(){
     statusText.innerText = "🔴 EN VIVO";
     button.innerText = "⏹ DETENER";
     logo.classList.add("spin");
-});
+}
 
-radio.addEventListener("pause", function(){
+function stopRadio(){
+    radio.pause();
+    radio.removeAttribute("src");
+    radio.load();
+    isPlaying = false;
+
     statusText.innerText = "Radio detenida";
     button.innerText = "▶ ESCUCHAR EN VIVO";
     logo.classList.remove("spin");
-});
+}
 
-/* 🔥 Cuando vuelves a la pestaña se reconecta si estaba en vivo */
-document.addEventListener("visibilitychange", function(){
-    if(!document.hidden && !radio.paused){
-        connectLive();
+function toggleRadio(){
+    if(isPlaying){
+        stopRadio();
+    }else{
+        startRadio();
     }
-});
+}
 
-radio.addEventListener("error", function(){
-    statusText.innerText = "⚠ Error conectando al streaming";
+/* Cuando vuelves a la pestaña */
+document.addEventListener("visibilitychange", function(){
+    if(!document.hidden && isPlaying){
+        startRadio(); // se reconecta al punto actual
+    }
 });
 </script>
 
