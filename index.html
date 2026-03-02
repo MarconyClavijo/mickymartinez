@@ -122,7 +122,9 @@ class="logo" id="logo">
 <h1>MARCONY RADIO</h1>
 <div class="sub">TRANSMITIENDO EN VIVO 24/7</div>
 
-<audio id="radio" preload="none"></audio>
+<audio id="radio" preload="none">
+<source src="https://radiostreaming.pro/8214/stream" type="audio/mpeg">
+</audio>
 
 <button class="playBtn" id="btn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
 
@@ -140,50 +142,27 @@ Página creada por Marcony Clavijo
 </div>
 
 <script>
-const STREAM_URL = "https://radiostreaming.pro/8214/stream";
 const radio = document.getElementById("radio");
-const statusText = document.getElementById("status");
 const button = document.getElementById("btn");
+const statusText = document.getElementById("status");
 const logo = document.getElementById("logo");
 
-let isPlaying = false;
-
-function startRadio(){
-    radio.src = STREAM_URL + "?t=" + new Date().getTime();
-    radio.load();
-    radio.play();
-    isPlaying = true;
-
-    statusText.innerText = "🔴 EN VIVO";
-    button.innerText = "⏹ DETENER";
-    logo.classList.add("spin");
-}
-
-function stopRadio(){
-    radio.pause();
-    radio.removeAttribute("src");
-    radio.load();
-    isPlaying = false;
-
-    statusText.innerText = "Radio detenida";
-    button.innerText = "▶ ESCUCHAR EN VIVO";
-    logo.classList.remove("spin");
-}
-
 function toggleRadio(){
-    if(isPlaying){
-        stopRadio();
-    }else{
-        startRadio();
-    }
-}
 
-/* Cuando vuelves a la pestaña */
-document.addEventListener("visibilitychange", function(){
-    if(!document.hidden && isPlaying){
-        startRadio(); // se reconecta al punto actual
+    if(radio.paused){
+        radio.play();
+        button.innerText = "⏹ DETENER";
+        statusText.innerText = "🔴 EN VIVO";
+        logo.classList.add("spin");
+    }else{
+        radio.pause();
+        radio.currentTime = 0; // limpia buffer
+        button.innerText = "▶ ESCUCHAR EN VIVO";
+        statusText.innerText = "Radio detenida";
+        logo.classList.remove("spin");
     }
-});
+
+}
 </script>
 
 </body>
