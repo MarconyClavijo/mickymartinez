@@ -18,8 +18,6 @@ text-align:center;
 overflow:hidden;
 }
 
-/* Fondo neon animado */
-
 body::before{
 content:"";
 position:absolute;
@@ -41,15 +39,11 @@ z-index:2;
 margin-top:60px;
 }
 
-/* Logo */
-
 .logo{
 width:220px;
 border-radius:50%;
 box-shadow:0 0 40px #ff00cc;
 }
-
-/* gira solo en vivo */
 
 .spin{
 animation: spin 8s linear infinite;
@@ -72,8 +66,6 @@ letter-spacing:3px;
 margin-bottom:30px;
 color:#ffcc00;
 }
-
-/* boton */
 
 .playBtn{
 background:#ff0000;
@@ -103,8 +95,6 @@ margin-top:10px;
 font-size:16px;
 color:#ffcc00;
 }
-
-/* redes */
 
 .social{
 margin-top:40px;
@@ -159,8 +149,11 @@ Radio detenida
 </div>
 
 <div class="song">
-🎵 <span id="song">Cargando canción...</span>
+🎵 <span id="sonic_title">Cargando canción...</span>
 </div>
+
+<!-- SCRIPT DEL STREAM -->
+<script id="sonic_js" data-port="8216" src="https://radiostreaming.pro/cp/widgets.js?r=846"></script>
 
 <div class="social">
 
@@ -187,9 +180,7 @@ const statusText = document.getElementById("status");
 const button = document.getElementById("btn");
 const logo = document.getElementById("logo");
 
-let playing = false;
-
-/* PLAY STOP */
+let playing=false;
 
 function toggleRadio(){
 
@@ -213,63 +204,27 @@ playing=false;
 
 }
 
-/* cuando empieza */
-
 radio.addEventListener("play",function(){
 
 statusText.innerText="🔴 EN VIVO";
-
 button.innerText="⏹ DETENER";
-
 logo.classList.add("spin");
 
 });
 
-/* cuando se detiene */
-
 radio.addEventListener("pause",function(){
 
 statusText.innerText="Radio detenida";
-
 button.innerText="▶ ESCUCHAR EN VIVO";
-
 logo.classList.remove("spin");
 
 });
-
-/* error */
 
 radio.addEventListener("error",function(){
 
 statusText.innerText="⚠ Error conectando al streaming";
 
 });
-
-/* mostrar cancion */
-
-async function actualizarCancion(){
-
-try{
-
-const res = await fetch("https://radiostreaming.pro/8216/status-json.xsl");
-
-const data = await res.json();
-
-const song = data.icestats.source.title;
-
-document.getElementById("song").innerText=song;
-
-}catch{
-
-document.getElementById("song").innerText="Transmisión en vivo";
-
-}
-
-}
-
-setInterval(actualizarCancion,10000);
-
-actualizarCancion();
 
 </script>
 
