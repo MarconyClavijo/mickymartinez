@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Grupo Marcony | Radios</title>
+<title>Grupo Marcony | Radios en Vivo</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -17,7 +17,7 @@ background:#f2f2f2;
 text-align:center;
 }
 
-/* LOGO SUPERIOR */
+/* LOGO */
 
 .header{
 padding:25px 10px;
@@ -40,7 +40,7 @@ max-width:900px;
 margin:auto;
 }
 
-/* TARJETA */
+/* TARJETA RADIO */
 
 .radio{
 background:white;
@@ -55,8 +55,6 @@ cursor:pointer;
 transform:scale(1.05);
 }
 
-/* AREA COLOR */
-
 .radio-top{
 height:130px;
 display:flex;
@@ -64,8 +62,6 @@ align-items:center;
 justify-content:center;
 position:relative;
 }
-
-/* LOGO RADIO */
 
 .radio-top img{
 width:80px;
@@ -88,7 +84,7 @@ font-size:20px;
 box-shadow:0 5px 15px rgba(0,0,0,.4);
 }
 
-/* TITULO */
+/* NOMBRE */
 
 .radio-name{
 padding:35px 10px 15px;
@@ -111,17 +107,49 @@ audio{
 width:300px;
 }
 
+/* PUBLICIDAD */
+
+.ads{
+margin:40px auto;
+max-width:600px;
+background:linear-gradient(90deg,#ff0000,#ff7300);
+padding:25px;
+border-radius:20px;
+color:white;
+box-shadow:0 5px 20px rgba(0,0,0,.4);
+}
+
+.ads a{
+display:inline-block;
+margin-top:10px;
+background:white;
+color:black;
+padding:10px 20px;
+border-radius:25px;
+text-decoration:none;
+font-weight:bold;
+}
+
+footer{
+margin-top:20px;
+padding:15px;
+font-size:13px;
+opacity:.8;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<!-- LOGO GRUPO MARCONY -->
+<!-- LOGO -->
 
 <div class="header">
 <img src="https://image2url.com/r2/default/images/1773416083732-ec4c7115-86a4-49a1-aaa8-8c9093b13595.jpeg">
 </div>
+
+<!-- RADIOS -->
 
 <div class="radios">
 
@@ -178,6 +206,8 @@ onclick="playRadio('https://sonic.globalstream.pro/8080/stream','La Tremenda','r
 
 </div>
 
+<!-- PLAYER -->
+
 <div class="player">
 
 <h3 id="radioTitle">Selecciona una radio</h3>
@@ -186,17 +216,52 @@ onclick="playRadio('https://sonic.globalstream.pro/8080/stream','La Tremenda','r
 
 </div>
 
+<!-- PUBLICIDAD -->
+
+<div class="ads">
+
+<h3>📢 Publicidad en nuestras radios</h3>
+
+<p>Promociona tu negocio en el <b>Grupo Marcony</b></p>
+
+<a href="https://wa.me/51942883375">
+WhatsApp 942883375 – Marcony Clavijo
+</a>
+
+</div>
+
+<footer>
+
+© 2026 Grupo Marcony – Plataforma de Radios Online
+
+</footer>
+
 <script>
 
-const player=document.getElementById("player")
-const title=document.getElementById("radioTitle")
+const player = document.getElementById("player")
+const title = document.getElementById("radioTitle")
+
+let currentRadio = null
+let playing = false
 
 function playRadio(url,name,id){
 
+if(playing && currentRadio === id){
+
 player.pause()
+player.src=""
+title.innerText="Radio detenida"
+
+document.getElementById(id).classList.remove("active")
+
+playing=false
+currentRadio=null
+
+return
+
+}
 
 player.src=url+"?"+Date.now()
-
 player.play()
 
 title.innerText="🔴 EN VIVO: "+name
@@ -206,6 +271,9 @@ r.classList.remove("active")
 })
 
 document.getElementById(id).classList.add("active")
+
+currentRadio=id
+playing=true
 
 }
 
