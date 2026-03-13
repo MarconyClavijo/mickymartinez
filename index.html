@@ -97,6 +97,7 @@ width:300px;
 margin-top:10px;
 font-weight:600;
 color:#444;
+font-size:16px;
 }
 
 .ads{
@@ -128,7 +129,6 @@ opacity:.8;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -139,8 +139,10 @@ opacity:.8;
 
 <div class="radios">
 
+<!-- STEREO M -->
+
 <div class="radio" id="r1"
-onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Stereo M','r1','https://sonic.globalstream.pro/8108/stats?json=1')">
+onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Stereo M','r1','https://sonic.globalstream.pro/8108/currentsong?sid=1')">
 
 <div class="radio-top" style="background:#ffd400">
 <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png">
@@ -151,8 +153,10 @@ onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Stereo M','r1',
 
 </div>
 
+<!-- MARCONY RADIO -->
+
 <div class="radio" id="r2"
-onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','r2','https://radiostreaming.pro/8216/stats?json=1')">
+onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','r2','https://radiostreaming.pro/8216/currentsong?sid=1')">
 
 <div class="radio-top" style="background:#2f7edb">
 <img src="https://image2url.com/r2/default/images/1773420804233-23cff9c7-2df0-45a2-aab1-9ad4df661614.png">
@@ -163,8 +167,10 @@ onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','r2'
 
 </div>
 
+<!-- LA TREMENDA -->
+
 <div class="radio" id="r3"
-onclick="playRadio('https://sonic.globalstream.pro/8080/stream','La Tremenda','r3','https://sonic.globalstream.pro/8080/stats?json=1')">
+onclick="playRadio('https://sonic.globalstream.pro/8080/stream','La Tremenda','r3','https://sonic.globalstream.pro/8080/currentsong?sid=1')">
 
 <div class="radio-top" style="background:#ff3d00">
 <img src="https://imgfz.com/i/h7TrEm5.png">
@@ -213,7 +219,7 @@ const song = document.getElementById("song")
 
 let currentRadio = null
 let playing = false
-let metaURL = ""
+let metaURL = null
 
 function playRadio(url,name,id,meta){
 
@@ -260,11 +266,7 @@ btn.innerHTML="⏹"
 currentRadio=id
 playing=true
 
-getSong()
-
 }
-
-function getSong(){
 
 setInterval(async()=>{
 
@@ -273,9 +275,9 @@ if(metaURL && playing){
 try{
 
 const res = await fetch(metaURL)
-const data = await res.json()
+const text = await res.text()
 
-song.innerText="🎵 "+data.songtitle
+song.innerText="🎵 "+text
 
 }catch{
 
@@ -285,9 +287,7 @@ song.innerText="🎵 Sonando ahora..."
 
 }
 
-},8000)
-
-}
+},7000)
 
 </script>
 
