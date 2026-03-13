@@ -3,314 +3,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marcony Radio - En Vivo</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<title>Grupo Marcony | Radios en Vivo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
+
 body{
 margin:0;
-font-family:'Orbitron',sans-serif;
-background:radial-gradient(circle at top,#ff00cc,#111,#000);
+font-family:'Poppins',sans-serif;
+background:linear-gradient(140deg,#0a0a0a,#2b0030,#000);
 color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-min-height:100vh;
 text-align:center;
 }
 
-.container{
-width:90%;
-max-width:420px;
+/* HEADER */
+
+header{
+padding:30px 20px;
 }
 
-/* LOGO */
-
-.logo{
-width:180px;
-border-radius:50%;
+header img{
+width:200px;
+border-radius:15px;
 box-shadow:0 0 25px #ff00cc;
-margin-bottom:15px;
 }
 
-.spin{
-animation:spin 8s linear infinite;
-}
-
-@keyframes spin{
-from{transform:rotate(0)}
-to{transform:rotate(360deg)}
-}
-
-/* TITULOS */
-
-h1{
-margin:10px 0;
-font-size:28px;
-}
-
-.sub{
-font-size:13px;
-color:#ffcc00;
+header h1{
+margin:10px 0 0;
+font-size:34px;
 letter-spacing:2px;
-margin-bottom:25px;
+}
+
+/* CONTENEDOR RADIOS */
+
+.radios{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:30px;
+padding:30px 20px;
+}
+
+/* TARJETA RADIO */
+
+.radio{
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(12px);
+border-radius:20px;
+padding:25px;
+width:300px;
+box-shadow:0 0 25px rgba(0,0,0,.6);
+transition:.3s;
+position:relative;
+}
+
+.radio:hover{
+transform:scale(1.06);
+}
+
+/* RADIO ACTIVA */
+
+.radio.active{
+box-shadow:0 0 30px #ff0000;
+border:2px solid #ff0000;
+}
+
+/* LOGO RADIO */
+
+.radio img{
+width:140px;
+cursor:pointer;
+}
+
+/* TITULO */
+
+.radio h2{
+margin:10px 0;
+font-size:20px;
 }
 
 /* BOTON */
 
-.playBtn{
+.radio button{
 background:#ff0000;
 border:none;
-padding:16px 35px;
-font-size:18px;
-border-radius:40px;
+padding:12px 25px;
+border-radius:30px;
 color:white;
+font-weight:bold;
 cursor:pointer;
-box-shadow:0 0 20px #ff0000;
-transition:.3s;
-}
-
-.playBtn:hover{
-transform:scale(1.08);
-}
-
-.status{
-margin-top:15px;
-font-size:14px;
-color:#00ffff;
-}
-
-/* CANCION */
-
-.song{
 margin-top:10px;
-font-size:15px;
-color:#ffcc00;
+box-shadow:0 0 15px #ff0000;
 }
 
-/* PORTADA */
+/* EN VIVO */
 
-.cover{
-margin-top:20px;
-width:200px;
-height:200px;
-border-radius:10px;
-object-fit:cover;
-box-shadow:0 0 20px #000;
+.live{
+position:absolute;
+top:10px;
+right:15px;
+background:red;
+padding:4px 10px;
+font-size:12px;
+border-radius:20px;
+animation:blink 1s infinite;
 }
 
-/* HISTORIAL */
-
-.history{
-margin-top:20px;
-font-size:13px;
-text-align:left;
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:.4}
+100%{opacity:1}
 }
 
-.history h3{
-font-size:14px;
-margin-bottom:5px;
-color:#00ffff;
+/* PLAYER */
+
+.player{
+margin-top:30px;
 }
 
-.history ul{
-list-style:none;
-padding:0;
-margin:0;
-}
-
-.history li{
-margin-bottom:3px;
-opacity:.8;
+audio{
+width:300px;
+margin-top:10px;
 }
 
 /* ECUALIZADOR */
 
-.eq{
+.equalizer{
 display:flex;
 justify-content:center;
 gap:4px;
-margin-top:20px;
+margin-top:10px;
+}
+
+.bar{
+width:5px;
 height:20px;
+background:#ff0000;
+animation:equalize 1s infinite;
 }
 
-.eq span{
-width:4px;
-background:#00ffff;
-animation:eq 1s infinite ease-in-out;
+.bar:nth-child(2){animation-delay:.2s}
+.bar:nth-child(3){animation-delay:.4s}
+.bar:nth-child(4){animation-delay:.6s}
+.bar:nth-child(5){animation-delay:.8s}
+
+@keyframes equalize{
+0%{height:10px}
+50%{height:25px}
+100%{height:10px}
 }
 
-.eq span:nth-child(2){animation-delay:.2s}
-.eq span:nth-child(3){animation-delay:.4s}
-.eq span:nth-child(4){animation-delay:.6s}
-.eq span:nth-child(5){animation-delay:.8s}
+/* PUBLICIDAD */
 
-@keyframes eq{
-0%,100%{height:5px}
-50%{height:20px}
+.ads{
+margin:40px auto;
+max-width:700px;
+background:linear-gradient(90deg,#ff0000,#ff7300);
+padding:25px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(0,0,0,.7);
 }
 
-/* REDES */
-
-.social{
-margin-top:25px;
-}
-
-.social a{
+.ads a{
 display:inline-block;
-margin:5px;
-padding:9px 18px;
-border-radius:25px;
+margin-top:10px;
+background:white;
+color:black;
+padding:12px 25px;
+border-radius:30px;
 text-decoration:none;
-color:white;
-font-size:13px;
+font-weight:bold;
 }
 
-.fb{background:#1877f2}
-.wa{background:#25d366}
+/* FOOTER */
 
 footer{
 margin-top:30px;
-font-size:11px;
-opacity:.6;
+padding:15px;
+font-size:13px;
+opacity:.8;
 }
+
 </style>
+
 </head>
 
 <body>
 
-<div class="container">
+<header>
 
-<img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png"
-class="logo" id="logo">
+<img src="https://image2url.com/r2/default/images/1773416083732-ec4c7115-86a4-49a1-aaa8-8c9093b13595.jpeg">
 
-<h1>MARCONY RADIO</h1>
+<h1>GRUPO MARCONY</h1>
 
-<div class="sub">TRANSMITIENDO EN VIVO 24/7</div>
+</header>
 
-<audio id="radio"></audio>
+<div class="radios">
 
-<button class="playBtn" id="btn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
+<!-- STEREO M -->
 
-<div class="status" id="status">Radio detenida</div>
+<div class="radio" id="radio1">
 
-<div class="song">
-🎵 <span id="sonic_title">Cargando canción...</span>
+<div class="live">EN VIVO</div>
+
+<img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png"
+onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Radio Stereo M','radio1')">
+
+<h2>Radio Stereo M</h2>
+
+<button onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Radio Stereo M','radio1')">
+▶ Escuchar
+</button>
+
 </div>
 
-<img id="cover" class="cover" src="https://via.placeholder.com/200x200?text=Marcony+Radio">
+<!-- MARCONY RADIO -->
 
-<div class="eq" id="eq" style="display:none">
-<span></span><span></span><span></span><span></span><span></span>
+<div class="radio" id="radio2">
+
+<div class="live">EN VIVO</div>
+
+<img src="https://image2url.com/r2/default/images/1773420804233-23cff9c7-2df0-45a2-aab1-9ad4df661614.png"
+onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','radio2')">
+
+<h2>Marcony Radio</h2>
+
+<button onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','radio2')">
+▶ Escuchar
+</button>
+
 </div>
 
-<div class="history">
-<h3>Últimas canciones</h3>
-<ul id="history"></ul>
+<!-- LA TREMENDA -->
+
+<div class="radio" id="radio3">
+
+<div class="live">EN VIVO</div>
+
+<img src="https://imgfz.com/i/h7TrEm5.png"
+onclick="playRadio('https://sonic.globalstream.pro/8080/stream','La Tremenda 106.5 FM','radio3')">
+
+<h2>La Tremenda 106.5 FM</h2>
+
+<button onclick="playRadio('https://sonic.globalstream.pro/8080/stream','La Tremenda 106.5 FM','radio3')">
+▶ Escuchar
+</button>
+
 </div>
 
-<script id="sonic_js" data-port="8216" src="https://radiostreaming.pro/cp/widgets.js?r=846"></script>
+</div>
 
-<div class="social">
-<a class="fb" href="https://www.facebook.com/radiomarcony" target="_blank">Facebook</a>
-<a class="wa" href="https://wa.me/51942883375" target="_blank">WhatsApp</a>
+<!-- PLAYER -->
+
+<div class="player">
+
+<h3 id="radioName">Selecciona una radio</h3>
+
+<audio controls id="player"></audio>
+
+<div class="equalizer">
+
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+
+</div>
+
+</div>
+
+<!-- PUBLICIDAD -->
+
+<div class="ads">
+
+<h3>📢 Publicidad en nuestras radios</h3>
+
+<p>Promociona tu negocio en el Grupo Marcony</p>
+
+<a href="https://wa.me/51942883375">
+WhatsApp 942883375 – Marcony Clavijo
+</a>
+
 </div>
 
 <footer>
-Página creada por Marcony Clavijo
-</footer>
 
-</div>
+© 2026 Grupo Marcony – Plataforma de Radios Online
+
+</footer>
 
 <script>
 
-const radio=document.getElementById("radio")
-const btn=document.getElementById("btn")
-const status=document.getElementById("status")
-const logo=document.getElementById("logo")
-const eq=document.getElementById("eq")
+const player=document.getElementById("player")
+const radioName=document.getElementById("radioName")
 
-let playing=false
-let history=[]
+function playRadio(url,name,id){
 
-function toggleRadio(){
+player.pause()
 
-if(!playing){
+player.src=url+"?"+Date.now()
 
-radio.src="https://radiostreaming.pro/8216/stream?"+Date.now()
-radio.play()
+player.play()
 
-playing=true
+radioName.innerText="🔴 EN VIVO: "+name
 
-}else{
-
-radio.pause()
-radio.src=""
-playing=false
-
-status.innerText="Radio detenida"
-btn.innerText="▶ ESCUCHAR EN VIVO"
-logo.classList.remove("spin")
-eq.style.display="none"
-
-}
-
-}
-
-radio.addEventListener("play",()=>{
-
-status.innerText="🔴 EN VIVO"
-btn.innerText="⏹ DETENER"
-logo.classList.add("spin")
-eq.style.display="flex"
-
+document.querySelectorAll(".radio").forEach(r=>{
+r.classList.remove("active")
 })
 
-/* detectar cambio de canción */
-
-setInterval(()=>{
-
-let song=document.getElementById("sonic_title").innerText
-
-if(song && !history.includes(song)){
-
-history.unshift(song)
-
-if(history.length>5)history.pop()
-
-let html=""
-history.forEach(s=>{
-html+="<li>"+s+"</li>"
-})
-
-document.getElementById("history").innerHTML=html
-
-buscarCover(song)
-
-}
-
-},4000)
-
-/* portada automática */
-
-function buscarCover(song){
-
-let q=encodeURIComponent(song)
-
-fetch("https://itunes.apple.com/search?term="+q+"&limit=1")
-
-.then(r=>r.json())
-
-.then(data=>{
-
-if(data.results.length>0){
-
-document.getElementById("cover").src=data.results[0].artworkUrl100.replace("100x100","300x300")
-
-}
-
-})
+document.getElementById(id).classList.add("active")
 
 }
 
