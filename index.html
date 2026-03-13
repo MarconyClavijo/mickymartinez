@@ -4,112 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Grupo Marcony | Radios en Vivo</title>
+<title>Grupo Marcony | Radios</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
 font-family:'Poppins',sans-serif;
-background:linear-gradient(140deg,#0a0a0a,#2b0030,#000);
-color:white;
+background:#f2f2f2;
 text-align:center;
 }
 
-/* HEADER */
-
-header{
-padding:25px;
+h1{
+margin:25px;
+color:#333;
 }
 
-header img{
-width:190px;
-border-radius:15px;
-box-shadow:0 0 25px #ff00cc;
-}
-
-header h1{
-margin-top:10px;
-font-size:32px;
-}
-
-/* PLAYER CENTRAL */
-
-.player-card{
-background:rgba(255,255,255,0.08);
-border-radius:25px;
-width:330px;
-margin:20px auto;
-padding:25px;
-box-shadow:0 0 30px rgba(0,0,0,.7);
-}
-
-.player-card h2{
-margin:5px 0;
-}
-
-.live{
-color:#ff0000;
-font-weight:bold;
-font-size:14px;
-display:none;
-}
-
-.song{
-margin-top:10px;
-font-size:14px;
-opacity:.9;
-}
-
-audio{
-margin-top:15px;
-width:100%;
-}
-
-/* ECUALIZADOR */
-
-.equalizer{
-display:flex;
-justify-content:center;
-gap:4px;
-margin-top:10px;
-}
-
-.bar{
-width:5px;
-height:15px;
-background:#ff0000;
-animation:equalize 1s infinite;
-}
-
-.bar:nth-child(2){animation-delay:.2s}
-.bar:nth-child(3){animation-delay:.4s}
-.bar:nth-child(4){animation-delay:.6s}
-.bar:nth-child(5){animation-delay:.8s}
-
-@keyframes equalize{
-0%{height:10px}
-50%{height:25px}
-100%{height:10px}
-}
-
-/* RADIOS */
+/* GRID RADIOS */
 
 .radios{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:25px;
-padding:30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:20px;
+padding:20px;
+max-width:900px;
+margin:auto;
 }
 
+/* TARJETA */
+
 .radio{
-background:rgba(255,255,255,0.05);
-padding:20px;
-border-radius:20px;
-width:180px;
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
 transition:.3s;
 cursor:pointer;
 }
@@ -118,47 +48,60 @@ cursor:pointer;
 transform:scale(1.05);
 }
 
-.radio.active{
-box-shadow:0 0 25px #ff0000;
-border:2px solid #ff0000;
+/* AREA COLOR */
+
+.radio-top{
+height:130px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
 }
 
-.radio img{
-width:100px;
+/* LOGO */
+
+.radio-top img{
+width:80px;
 }
 
-.radio h3{
-font-size:16px;
+/* BOTON PLAY */
+
+.play{
+position:absolute;
+bottom:-25px;
+background:linear-gradient(45deg,#ff00cc,#6a00ff);
+width:50px;
+height:50px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.4);
 }
 
-/* PUBLICIDAD */
+/* TITULO */
 
-.ads{
-margin:40px auto;
-max-width:700px;
-background:linear-gradient(90deg,#ff0000,#ff7300);
-padding:25px;
-border-radius:20px;
+.radio-name{
+padding:35px 10px 15px;
+font-weight:600;
 }
 
-.ads a{
-display:inline-block;
-margin-top:10px;
-background:white;
-color:black;
-padding:10px 20px;
-border-radius:25px;
-text-decoration:none;
-font-weight:bold;
+/* RADIO ACTIVA */
+
+.active{
+box-shadow:0 0 15px red;
 }
 
-/* FOOTER */
+/* PLAYER */
 
-footer{
-margin-top:20px;
-padding:15px;
-font-size:13px;
-opacity:.8;
+.player{
+margin:30px;
+}
+
+audio{
+width:300px;
 }
 
 </style>
@@ -167,93 +110,75 @@ opacity:.8;
 
 <body>
 
-<header>
-
-<img src="https://image2url.com/r2/default/images/1773416083732-ec4c7115-86a4-49a1-aaa8-8c9093b13595.jpeg">
-
 <h1>GRUPO MARCONY</h1>
-
-</header>
-
-<!-- PLAYER PRINCIPAL -->
-
-<div class="player-card">
-
-<h2 id="radioTitle">Selecciona una radio</h2>
-
-<div class="live" id="live">🔴 EN VIVO</div>
-
-<div class="song" id="song">La música sonará aquí</div>
-
-<audio controls id="player"></audio>
-
-<div class="equalizer">
-
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-
-</div>
-
-</div>
-
-<!-- RADIOS -->
 
 <div class="radios">
 
-<div class="radio" id="r1" onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Radio Stereo M','r1')">
+<!-- STEREO M -->
+
+<div class="radio" id="r1"
+onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Stereo M','r1')">
+
+<div class="radio-top" style="background:#ffd400">
 
 <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png">
 
-<h3>Stereo M</h3>
+<div class="play">▶</div>
 
 </div>
 
-<div class="radio" id="r2" onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','r2')">
+<div class="radio-name">Stereo M</div>
+
+</div>
+
+<!-- MARCONY RADIO -->
+
+<div class="radio" id="r2"
+onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','r2')">
+
+<div class="radio-top" style="background:#2f7edb">
 
 <img src="https://image2url.com/r2/default/images/1773420804233-23cff9c7-2df0-45a2-aab1-9ad4df661614.png">
 
-<h3>Marcony Radio</h3>
+<div class="play">▶</div>
 
 </div>
 
-<div class="radio" id="r3" onclick="playRadio('https://sonic.globalstream.pro/8080/stream','La Tremenda 106.5 FM','r3')">
+<div class="radio-name">Marcony Radio</div>
+
+</div>
+
+<!-- LA TREMENDA -->
+
+<div class="radio" id="r3"
+onclick="playRadio('https://sonic.globalstream.pro/8080/stream','La Tremenda','r3')">
+
+<div class="radio-top" style="background:#ff3d00">
 
 <img src="https://imgfz.com/i/h7TrEm5.png">
 
-<h3>La Tremenda</h3>
+<div class="play">▶</div>
+
+</div>
+
+<div class="radio-name">La Tremenda</div>
 
 </div>
 
 </div>
 
-<!-- PUBLICIDAD -->
+<div class="player">
 
-<div class="ads">
+<h3 id="radioTitle">Selecciona una radio</h3>
 
-<h3>📢 Publicidad en nuestras radios</h3>
-
-<p>Promociona tu negocio en el Grupo Marcony</p>
-
-<a href="https://wa.me/51942883375">
-WhatsApp 942883375 – Marcony Clavijo
-</a>
+<audio controls id="player"></audio>
 
 </div>
-
-<footer>
-
-© 2026 Grupo Marcony – Radios Online
-
-</footer>
 
 <script>
 
 const player=document.getElementById("player")
 const title=document.getElementById("radioTitle")
-const live=document.getElementById("live")
 
 function playRadio(url,name,id){
 
@@ -263,9 +188,7 @@ player.src=url+"?"+Date.now()
 
 player.play()
 
-title.innerText=name
-
-live.style.display="block"
+title.innerText="🔴 EN VIVO: "+name
 
 document.querySelectorAll(".radio").forEach(r=>{
 r.classList.remove("active")
