@@ -29,7 +29,7 @@ border-radius:10px;
 box-shadow:0 4px 15px rgba(0,0,0,.3);
 }
 
-/* GRID RADIOS */
+/* RADIOS GRID */
 
 .radios{
 display:grid;
@@ -40,7 +40,7 @@ max-width:900px;
 margin:auto;
 }
 
-/* TARJETA RADIO */
+/* TARJETA */
 
 .radio{
 background:white;
@@ -67,7 +67,7 @@ position:relative;
 width:80px;
 }
 
-/* BOTON PLAY */
+/* BOTON */
 
 .play{
 position:absolute;
@@ -80,18 +80,18 @@ display:flex;
 align-items:center;
 justify-content:center;
 color:white;
-font-size:20px;
+font-size:22px;
 box-shadow:0 5px 15px rgba(0,0,0,.4);
 }
 
-/* NOMBRE */
+/* TITULO */
 
 .radio-name{
 padding:35px 10px 15px;
 font-weight:600;
 }
 
-/* RADIO ACTIVA */
+/* ACTIVA */
 
 .active{
 box-shadow:0 0 15px red;
@@ -162,7 +162,7 @@ onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Stereo M','r1')
 
 <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png">
 
-<div class="play">▶</div>
+<div class="play" id="b1">▶</div>
 
 </div>
 
@@ -179,7 +179,7 @@ onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','r2'
 
 <img src="https://image2url.com/r2/default/images/1773420804233-23cff9c7-2df0-45a2-aab1-9ad4df661614.png">
 
-<div class="play">▶</div>
+<div class="play" id="b2">▶</div>
 
 </div>
 
@@ -196,7 +196,7 @@ onclick="playRadio('https://sonic.globalstream.pro/8080/stream','La Tremenda','r
 
 <img src="https://imgfz.com/i/h7TrEm5.png">
 
-<div class="play">▶</div>
+<div class="play" id="b3">▶</div>
 
 </div>
 
@@ -246,13 +246,18 @@ let playing = false
 
 function playRadio(url,name,id){
 
+const btn = document.querySelector("#"+id+" .play")
+
 if(playing && currentRadio === id){
 
 player.pause()
 player.src=""
+
 title.innerText="Radio detenida"
 
 document.getElementById(id).classList.remove("active")
+
+btn.innerHTML="▶"
 
 playing=false
 currentRadio=null
@@ -270,7 +275,13 @@ document.querySelectorAll(".radio").forEach(r=>{
 r.classList.remove("active")
 })
 
+document.querySelectorAll(".play").forEach(b=>{
+b.innerHTML="▶"
+})
+
 document.getElementById(id).classList.add("active")
+
+btn.innerHTML="⏹"
 
 currentRadio=id
 playing=true
