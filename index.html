@@ -5,304 +5,290 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>La Tremenda 106.5 FM</title>
+<title>Grupo Marcony | Radios en Vivo</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
 font-family:'Poppins',sans-serif;
-min-height:100vh;
-background:linear-gradient(140deg,#ff0000,#ff7300,#ffc400);
-background-size:300% 300%;
-animation:fondo 10s ease infinite;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-}
-
-@keyframes fondo{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
-
-.app{
-width:92%;
-max-width:420px;
-background:rgba(0,0,0,.55);
-backdrop-filter:blur(12px);
-border-radius:30px;
-padding:25px 20px;
-box-shadow:0 0 40px rgba(0,0,0,.6);
+background:#f2f2f2;
 text-align:center;
-color:#fff;
-margin-top:20px;
 }
 
-.title{
-font-size:28px;
-font-weight:900;
-margin-bottom:5px;
-text-shadow:0 0 10px #ff0000;
+/* LOGO */
+
+.header{
+padding:25px 10px;
 }
 
-.logo{
-width:170px;
-margin:10px 0;
-filter:drop-shadow(0 0 10px #fff);
+.header img{
+width:180px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,.3);
 }
 
-.player-box{
-background:rgba(255,255,255,.12);
-border:2px solid rgba(255,255,255,.2);
-border-radius:20px;
+/* RADIOS GRID */
+
+.radios{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:20px;
 padding:20px;
-margin-top:10px;
+max-width:900px;
+margin:auto;
 }
 
-.status{
-font-weight:bold;
-margin-bottom:5px;
-color:#0f0;
-}
+/* TARJETA */
 
-.song{
-font-size:14px;
-margin-bottom:10px;
-color:#fff;
-opacity:.9;
-}
-
-.play{
-padding:20px;
-width:100%;
-font-size:28px;
-font-weight:900;
-border:none;
+.radio{
+background:white;
 border-radius:15px;
-background:#00d95f;
-color:#fff;
-cursor:pointer;
+overflow:hidden;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
 transition:.3s;
-box-shadow:0 0 20px rgba(0,255,100,.6);
+cursor:pointer;
 }
 
-.play:hover{
+.radio:hover{
 transform:scale(1.05);
 }
 
-.volume{
-margin-top:15px;
-}
-
-input[type=range]{
-width:100%;
-}
-
-.eq{
+.radio-top{
+height:130px;
 display:flex;
+align-items:center;
 justify-content:center;
-gap:6px;
-margin:15px 0;
-height:40px;
+position:relative;
 }
 
-.eq span{
-width:8px;
-background:#00ff00;
-animation:eco .7s infinite;
-animation-play-state:paused;
+.radio-top img{
+width:80px;
 }
 
-.playing .eq span{
-animation-play-state:running;
-}
+/* BOTON */
 
-@keyframes eco{
-0%{height:10px}
-50%{height:40px}
-100%{height:15px}
-}
-
-.social-container{
+.play{
+position:absolute;
+bottom:-25px;
+background:linear-gradient(45deg,#ff00cc,#6a00ff);
+width:50px;
+height:50px;
+border-radius:50%;
 display:flex;
-gap:10px;
-margin-top:15px;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:22px;
+box-shadow:0 5px 15px rgba(0,0,0,.4);
 }
 
-.social-box{
-flex:1;
-padding:15px;
-border-radius:15px;
-font-weight:bold;
-text-decoration:none;
-color:#fff;
-text-align:center;
-transition:.3s;
+/* TITULO */
+
+.radio-name{
+padding:35px 10px 15px;
+font-weight:600;
 }
 
-.facebook{
-background:#1877f2;
+/* ACTIVA */
+
+.active{
+box-shadow:0 0 15px red;
 }
 
-.whatsapp{
-background:#00bb2d;
+/* PLAYER */
+
+.player{
+margin:30px;
 }
 
-.social-box:hover{
-transform:scale(1.06);
+audio{
+width:300px;
 }
 
-.footer{
+/* PUBLICIDAD */
+
+.ads{
+margin:40px auto;
+max-width:600px;
+background:linear-gradient(90deg,#ff0000,#ff7300);
+padding:25px;
+border-radius:20px;
+color:white;
+box-shadow:0 5px 20px rgba(0,0,0,.4);
+}
+
+.ads a{
+display:inline-block;
 margin-top:10px;
-color:#fff;
-font-size:12px;
+background:white;
+color:black;
+padding:10px 20px;
+border-radius:25px;
+text-decoration:none;
+font-weight:bold;
+}
+
+footer{
+margin-top:20px;
+padding:15px;
+font-size:13px;
 opacity:.8;
-text-align:center;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="app" id="app">
+<!-- LOGO -->
 
-<div class="title">LA TREMENDA 106.5 FM</div>
-
-<img src="https://imgfz.com/i/h7TrEm5.png" class="logo">
-
-<div class="player-box">
-
-<div class="status" id="estado">🔴 EN VIVO</div>
-
-<div class="song">
-<span id="sonic_title">Cargando canción...</span>
+<div class="header">
+<img src="https://image2url.com/r2/default/images/1773416083732-ec4c7115-86a4-49a1-aaa8-8c9093b13595.jpeg">
 </div>
 
-<div class="eq">
-<span></span><span></span><span></span><span></span><span></span>
-</div>
+<!-- RADIOS -->
 
-<button class="play" id="btn">▶ PLAY</button>
+<div class="radios">
 
-<div class="volume">
-<input type="range" min="0" max="1" step="0.01" value="1" id="volumen">
-</div>
+<!-- STEREO M -->
+
+<div class="radio" id="r1"
+onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Stereo M','r1')">
+
+<div class="radio-top" style="background:#ffd400">
+
+<img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png">
+
+<div class="play" id="b1">▶</div>
 
 </div>
 
-<div class="social-container">
+<div class="radio-name">Stereo M</div>
 
-<a class="social-box facebook"
-href="https://www.facebook.com/profile.php?id=61585616422921"
-target="_blank">
-Facebook
+</div>
+
+<!-- MARCONY RADIO -->
+
+<div class="radio" id="r2"
+onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','r2')">
+
+<div class="radio-top" style="background:#2f7edb">
+
+<img src="https://image2url.com/r2/default/images/1773420804233-23cff9c7-2df0-45a2-aab1-9ad4df661614.png">
+
+<div class="play" id="b2">▶</div>
+
+</div>
+
+<div class="radio-name">Marcony Radio</div>
+
+</div>
+
+<!-- LA TREMENDA -->
+
+<div class="radio" id="r3"
+onclick="playRadio('https://radiostreaming.pro/8238/stream','La Tremenda','r3')">
+
+<div class="radio-top" style="background:#ff3d00">
+
+<img src="https://imgfz.com/i/h7TrEm5.png">
+
+<div class="play" id="b3">▶</div>
+
+</div>
+
+<div class="radio-name">La Tremenda</div>
+
+</div>
+
+</div>
+
+<!-- PLAYER -->
+
+<div class="player">
+
+<h3 id="radioTitle">Selecciona una radio</h3>
+
+<audio controls id="player"></audio>
+
+</div>
+
+<!-- PUBLICIDAD -->
+
+<div class="ads">
+
+<h3>📢 Publicidad en nuestras radios</h3>
+
+<p>Promociona tu negocio en el <b>Grupo Marcony</b></p>
+
+<a href="https://wa.me/51942883375">
+WhatsApp 942883375 – Marcony Clavijo
 </a>
 
-<a class="social-box whatsapp"
-href="https://wa.me/51942883375"
-target="_blank">
-WhatsApp
-</a>
-
 </div>
 
-</div>
+<footer>
 
-<div class="footer">
-Diseño por Marcony Clavijo – Radio La Tremenda
-</div>
+© 2026 Grupo Marcony – Plataforma de Radios Online
+
+</footer>
 
 <script>
 
-const btn = document.getElementById("btn");
-const estado = document.getElementById("estado");
-const app = document.getElementById("app");
-const vol = document.getElementById("volumen");
+const player = document.getElementById("player")
+const title = document.getElementById("radioTitle")
 
-let audio=null;
-let sonando=false;
+let currentRadio = null
+let playing = false
 
-function crearAudio(){
+function playRadio(url,name,id){
 
-if(audio){
-audio.pause();
-audio.src="";
-audio.load();
+const btn = document.querySelector("#"+id+" .play")
+
+if(playing && currentRadio === id){
+
+player.pause()
+player.src=""
+
+title.innerText="Radio detenida"
+
+document.getElementById(id).classList.remove("active")
+
+btn.innerHTML="▶"
+
+playing=false
+currentRadio=null
+
+return
+
 }
 
-audio=new Audio();
+player.src=url+"?"+Date.now()
+player.play()
 
-/* NUEVO STREAM */
-audio.src="https://radiostreaming.pro/8238/stream?"+Date.now();
+title.innerText="🔴 EN VIVO: "+name
 
-audio.crossOrigin="anonymous";
-audio.preload="auto";
-audio.volume=vol.value;
-
-}
-
-btn.onclick=()=>{
-
-if(!sonando){
-
-crearAudio();
-
-estado.textContent="⏳ Conectando en vivo...";
-btn.textContent="⏳";
-
-audio.play()
-.then(()=>{
-
-estado.textContent="🎧 EN VIVO - TIEMPO REAL";
-btn.textContent="⏸ DETENER";
-
-app.classList.add("playing");
-
-sonando=true;
-
+document.querySelectorAll(".radio").forEach(r=>{
+r.classList.remove("active")
 })
-.catch(()=>{
 
-estado.textContent="⚠️ Error de conexión";
-btn.textContent="▶ REPRODUCIR";
+document.querySelectorAll(".play").forEach(b=>{
+b.innerHTML="▶"
+})
 
-sonando=false;
+document.getElementById(id).classList.add("active")
 
-});
+btn.innerHTML="⏹"
 
-}else{
-
-audio.pause();
-audio.src="";
-audio.load();
-
-estado.textContent="⏹ TRANSMISIÓN DETENIDA";
-btn.textContent="▶ REPRODUCIR";
-
-app.classList.remove("playing");
-
-sonando=false;
+currentRadio=id
+playing=true
 
 }
 
-};
-
-vol.oninput=()=>{
-
-if(audio) audio.volume=vol.value;
-
-};
-
-</script>
-
-<script id='sonic_js' data-port='8238'
-src='https://radiostreaming.pro/cp/widgets.js'>
 </script>
 
 </body>
