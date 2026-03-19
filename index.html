@@ -154,54 +154,53 @@ opacity:.8;
 <div class="radios">
 
 <!-- STEREO M -->
-
 <div class="radio" id="r1"
 onclick="playRadio('https://sonic.globalstream.pro/8108/stream','Stereo M','r1')">
-
 <div class="radio-top" style="background:#ffd400">
-
 <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png">
-
 <div class="play" id="b1">▶</div>
-
+</div>
+<div class="radio-name">Stereo M</div>
 </div>
 
-<div class="radio-name">Stereo M</div>
-
+<!-- RADIO LA PATRONA -->
+<div class="radio" id="r5"
+onclick="playRadio('https://radiostreaming.pro/8246/stream','Radio La Patrona','r5')">
+<div class="radio-top" style="background:#ff2e8a">
+<img src="https://image2url.com/r2/default/images/1773782144520-db83b536-4765-45ec-b761-f51c5ee811ed.png" style="width:95px;">
+<div class="play" id="b5">▶</div>
+</div>
+<div class="radio-name">Radio La Patrona</div>
 </div>
 
 <!-- MARCONY RADIO -->
-
 <div class="radio" id="r2"
 onclick="playRadio('https://radiostreaming.pro/8216/stream','Marcony Radio','r2')">
-
 <div class="radio-top" style="background:#2f7edb">
-
-<img src="https://image2url.com/r2/default/images/1773420804233-23cff9c7-2df0-45a2-aab1-9ad4df661614.png">
-
+<img src="https://image2url.com/r2/default/images/1773420804233-23cff9c7-2df0-45a2-aab1-9ad4df661614.png" style="width:95px;">
 <div class="play" id="b2">▶</div>
-
 </div>
-
 <div class="radio-name">Marcony Radio</div>
-
 </div>
 
 <!-- LA TREMENDA -->
-
 <div class="radio" id="r3"
 onclick="playRadio('https://radiostreaming.pro/8238/stream','La Tremenda','r3')">
-
 <div class="radio-top" style="background:#ff3d00">
-
 <img src="https://imgfz.com/i/h7TrEm5.png">
-
 <div class="play" id="b3">▶</div>
-
+</div>
+<div class="radio-name">La Tremenda</div>
 </div>
 
-<div class="radio-name">La Tremenda</div>
-
+<!-- LA GIGANTE -->
+<div class="radio" id="r4"
+onclick="playRadio('https://radiostreaming.pro/8236/stream','La Gigante','r4')">
+<div class="radio-top" style="background:#00c21a">
+<img src="https://image2url.com/r2/default/images/1773546122381-be7bfbb3-0de1-4e74-88e5-a3c61aaeae32.png" style="width:95px;">
+<div class="play" id="b4">▶</div>
+</div>
+<div class="radio-name">La Gigante</div>
 </div>
 
 </div>
@@ -209,31 +208,22 @@ onclick="playRadio('https://radiostreaming.pro/8238/stream','La Tremenda','r3')"
 <!-- PLAYER -->
 
 <div class="player">
-
 <h3 id="radioTitle">Selecciona una radio</h3>
-
 <audio controls id="player"></audio>
-
 </div>
 
 <!-- PUBLICIDAD -->
 
 <div class="ads">
-
 <h3>📢 Publicidad en nuestras radios</h3>
-
 <p>Promociona tu negocio en el <b>Grupo Marcony</b></p>
-
-<a href="https://wa.me/51942883375">
-WhatsApp 942883375 – Marcony Clavijo
+<a href="https://wa.me/51942883375" target="_blank">
+💬 Contactar por WhatsApp
 </a>
-
 </div>
 
 <footer>
-
 © 2026 Grupo Marcony – Plataforma de Radios Online
-
 </footer>
 
 <script>
@@ -248,26 +238,31 @@ function playRadio(url,name,id){
 
 const btn = document.querySelector("#"+id+" .play")
 
+// MISMA RADIO → STOP
 if(playing && currentRadio === id){
-
 player.pause()
 player.src=""
+player.load()
 
 title.innerText="Radio detenida"
 
 document.getElementById(id).classList.remove("active")
-
 btn.innerHTML="▶"
 
 playing=false
 currentRadio=null
-
 return
-
 }
 
+// 🔴 CORRECCIÓN DEL HIPO
+player.pause()
+player.src=""
+player.load()
+
+setTimeout(()=>{
 player.src=url+"?"+Date.now()
 player.play()
+},150)
 
 title.innerText="🔴 EN VIVO: "+name
 
@@ -280,7 +275,6 @@ b.innerHTML="▶"
 })
 
 document.getElementById(id).classList.add("active")
-
 btn.innerHTML="⏹"
 
 currentRadio=id
@@ -292,4 +286,3 @@ playing=true
 
 </body>
 </html>
-```
