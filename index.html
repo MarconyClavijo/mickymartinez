@@ -10,11 +10,11 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:Raleway,sans-serif;background:#eef4ff;color:#222}
 
-/* --- HEADER ESTILO HAMBURGUESA OPTIMIZADO --- */
+/* --- NUEVO HEADER TIPO HAMBURGUESA (CENTRADO Y RECONSTRUIDO) --- */
 header{background:var(--azul);padding:15px 12px;position:relative}
-.navbar{max-width:1100px;margin:auto;display:flex;justify-content:center;align-items:center;position:relative;min-height:70px}
+.navbar{max-width:1100px;margin:auto;display:flex;justify-content:center;align-items:center;position:relative;min-height:65px}
 .brand{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
-.logo{width:90px;height:auto;animation:flotar 2.5s infinite;margin-bottom:5px;display:block}
+.logo{width:90px;animation:flotar 2.5s infinite;margin-bottom:5px;display:block}
 
 .menu-toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(255,255,255,0.4);color:white;font-size:18px;padding:6px 12px;border-radius:6px;cursor:pointer;}
 .menu-toggle:hover{border-color:var(--amarillo);color:var(--amarillo)}
@@ -37,7 +37,7 @@ header{background:var(--azul);padding:15px 12px;position:relative}
 .card{background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 15px rgba(0,0,0,.15)}
 audio{width:100%}
 .live{color:#e60000;font-weight:bold;margin:10px 0}
-#song-title{font-weight:bold;color:#0b3d91;margin-bottom:15px}
+#song-title{font-weight:bold;color:#0b3d91}
 .buttons a{display:block;text-decoration:none;background:var(--amarillo);color:#111;padding:12px;border-radius:30px;text-align:center;margin-bottom:10px;font-weight:bold}
 .events{max-width:1100px;margin:20px auto;padding:0 20px}
 .events h2{text-align:center;color:#0b3d91}
@@ -54,30 +54,32 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
 <header>
   <div class="navbar">
     <div class="brand">
-      <img class="logo" src="https://postimg.cc" alt="Radio Stereo M">
-      <div style="color:#fff;font-size:14px;letter-spacing:1px;">SULLANA - PIURA</div>
+      <img class="logo" src="https://postimg.cc">
+      <div style="color:#fff;font-size:14px;letter-spacing:1px;">Sullana - Piura</div>
     </div>
     
+    <!-- Botón único de Menú Hamburguesa -->
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     
+    <!-- Enlaces que se ocultan en móvil -->
     <nav class="nav-links" id="menuLinks">
-      <a href="#">Inicio</a>
-      <a href="#">En Vivo</a>
-      <a href="#">Eventos</a>
-      <a href="#">Programación</a>
+      <a style="color:white;margin:10px">Inicio</a>
+      <a style="color:white;margin:10px">En Vivo</a>
+      <a style="color:white;margin:10px">Eventos</a>
+      <a style="color:white;margin:10px">Programación</a>
     </nav>
   </div>
 </header>
 
 <div class="banner"><img src="http://imgfz.com"></div>
 <div class="main">
-
 <div class="card">
     <h2>🎧 Escúchanos en Vivo</h2>
     <audio id="radioPlayer" controls preload="none"></audio>
     <div class="live">🔴 EN VIVO</div>
     <div id="song-title"><span id="sonic_title">Cargando canción...</span></div>
     
+    <!-- Sección Al Aire Ahora incorporada correctamente -->
     <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
     <h3 style="margin-top:0;">🟢 AL AIRE AHORA</h3>
     <div id="locutor" style="margin-bottom: 5px;"></div>
@@ -85,13 +87,13 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
 </div>
 
 <div class="card buttons">
-    <a href="https://google.com" target="_blank">📲 Descargar App</a>
-    <a href="https://facebook.com" target="_blank">📘 Facebook</a>
-    <a href="https://wa.me" target="_blank">🎤 WhatsApp Oyentes</a>
-    <a href="https://wa.me" target="_blank">📢 Publicidad</a>
+<a href="https://google.com" target="_blank">📲 Descargar App</a>
+<a href="https://facebook.com" target="_blank">📘 Facebook</a>
+<a href="https://wa.me" target="_blank">🎤 WhatsApp Oyentes</a>
+<a href="https://wa.me" target="_blank">📢 Publicidad</a>
+</div>
 </div>
 
-</div>
 <section class="events">
 <h2>🎉 Entérate de los eventos</h2>
 <div class="slider">
@@ -103,27 +105,17 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
 <footer>Diseño y desarrollo web por Marcony Clavijo | 942883375</footer>
 
 <script>
+// Función para abrir y cerrar el menú
 function toggleMenu() {
     var links = document.getElementById("menuLinks");
     links.classList.toggle("active");
 }
 
-var player = document.getElementById("radioPlayer");
-player.src = "https://globalstream.pro" + Date.now();
-
-setInterval(function(){
-    if(typeof sonic_data !== "undefined" && sonic_data.songtitle){
-        document.getElementById("sonic_title").textContent = sonic_data.songtitle;
-    }
-}, 2000);
-
-var idx = 0;
-var slides = document.querySelectorAll(".slide");
-setInterval(function(){
-    slides[idx].classList.remove("active");
-    idx = (idx + 1) % slides.length;
-    slides[idx].classList.add("active");
-}, 5000);
+const player=document.getElementById("radioPlayer");
+player.src="https://globalstream.pro"+Date.now();
+setInterval(()=>{if(typeof sonic_data!=="undefined"&&sonic_data.songtitle){document.getElementById("sonic_title").textContent=sonic_data.songtitle;}},2000);
+let i=0;const slides=document.querySelectorAll(".slide");
+setInterval(()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active");},5000);
 
 function ap(){
     var fecha = new Date();
