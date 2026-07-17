@@ -17,7 +17,7 @@ header{background:var(--azul);padding:12px}.navbar{max-width:1100px;margin:auto;
 .card{background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 15px rgba(0,0,0,.15)}
 audio{width:100%}
 .live{color:#e60000;font-weight:bold;margin:10px 0}
-#song-title{font-weight:bold;color:#0b3d91}
+#song-title{font-weight:bold;color:#0b3d91;margin-bottom:15px}
 .buttons a{display:block;text-decoration:none;background:var(--amarillo);color:#111;padding:12px;border-radius:30px;text-align:center;margin-bottom:10px;font-weight:bold}
 .events{max-width:1100px;margin:20px auto;padding:0 20px}
 .events h2{text-align:center;color:#0b3d91}
@@ -33,13 +33,30 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
 <header><div class="navbar"><div class="brand"><img class="logo" src="https://i.postimg.cc/L8bjb6K5/1687464033296.png"><div style="color:#fff;font-size:14px">Sullana - Piura</div></div><nav><a style="color:white;margin:10px">Inicio</a><a style="color:white;margin:10px">En Vivo</a><a style="color:white;margin:10px">Eventos</a><a style="color:white;margin:10px">Programación</a></nav></div></header>
 <div class="banner"><img src="http://imgfz.com/i/fCXV3aO.jpeg"></div>
 <div class="main">
-<div class="card"><h2>🎧 Escúchanos en Vivo</h2><audio id="radioPlayer" controls preload="none"></audio><div class="live">🔴 EN VIVO</div><div id="song-title"><span id="sonic_title">Cargando canción...</span></div></div>
+
+<!-- REPRODUCTOR CON LA SECCIÓN AL AIRE INCORPORADA -->
+<div class="card">
+    <h2>🎧 Escúchanos en Vivo</h2>
+    <audio id="radioPlayer" controls preload="none"></audio>
+    <div class="live">🔴 EN VIVO</div>
+    <div id="song-title"><span id="sonic_title">Cargando canción...</span></div>
+    
+    <!-- Se movió esta sección aquí adentro -->
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+    <h3 style="margin-top:0;">🟢 AL AIRE AHORA</h3>
+    <div id="locutor" style="margin-bottom: 5px;"></div>
+    <div id="horario"></div>
+</div>
+
+<!-- BOTONES DE REDES Y APP -->
 <div class="card buttons">
-<a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descargar App</a>
-<a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
-<a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
-<a href="https://wa.me/51942883375" target="_blank">📢 Publicidad</a>
-<hr><h3>🟢 AL AIRE AHORA</h3><div id="locutor"></div><div id="horario"></div></div></div>
+    <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descargar App</a>
+    <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
+    <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
+    <a href="https://wa.me/51942883375" target="_blank">📢 Publicidad</a>
+</div>
+
+</div>
 <section class="events">
 <h2>🎉 Entérate de los eventos</h2>
 <div class="slider">
