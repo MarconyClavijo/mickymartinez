@@ -1,185 +1,185 @@
-‎<!DOCTYPE html>
-‎<html lang="es">
-‎<head>
-‎<meta charset="UTF-8">
-‎<meta name="viewport" content="width=device-width, initial-scale=1.0">
-‎<title>Radio Stereo M 101.5 FM</title>
-‎<link href="https://googleapis.com" rel="stylesheet">
-‎<style>
-‎:root{--azul:#0b3d91;--amarillo:#ffd700;--rojo:#e60000;--blanco:#fff;--gris:#f5f5f5;}
-‎*{box-sizing:border-box}
-‎body{margin:0;font-family:Raleway,sans-serif;background:#eef4ff;color:#222}
-‎header{background:var(--azul);padding:12px}.navbar{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
-‎.logo{width:90px;animation:flotar 2.5s infinite}
-‎.slogan{color:#ffd700;font-weight:bold;margin-top:8px}
-‎.banner img{display:block;width:100%;max-height:420px;object-fit:cover}
-‎.main{max-width:1100px;margin:auto;padding:25px;display:grid;grid-template-columns:2fr 1fr;gap:20px}
-‎.card{background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 15px rgba(0,0,0,.15)}
-‎audio{width:100%}
-‎.live{color:#e60000;font-weight:bold;margin:10px 0}
-‎#song-title{font-weight:bold;color:#0b3d91;margin-bottom:15px}
-‎.buttons a{display:block;text-decoration:none;background:var(--amarillo);color:#111;padding:12px;border-radius:30px;text-align:center;margin-bottom:10px;font-weight:bold}
-‎.events{max-width:1100px;margin:20px auto;padding:0 20px}
-‎.events h2{text-align:center;color:#0b3d91}
-‎.slider{position:relative;max-width:420px;margin:0 auto}
-‎.slide{display:none}
-‎.slide.active{display:block}
-‎.slide img{width:100%;border-radius:15px;box-shadow:0 3px 10px rgba(0,0,0,.15)}
-‎footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:30px}
-‎@keyframes flotar{50%{transform:translateY(-8px)}}
-‎@media(max-width:768px){.main{grid-template-columns:1fr}.slider{max-width:320px}}
-‎</style>
-‎</head><body>
-‎<header><div class="navbar"><div class="brand"><img class="logo" src="https://postimg.cc"><div style="color:#fff;font-size:14px">Sullana - Piura</div></div><nav><a style="color:white;margin:10px">Inicio</a><a style="color:white;margin:10px">En Vivo</a><a style="color:white;margin:10px">Eventos</a><a style="color:white;margin:10px">Programación</a></nav></div></header>
-‎<div class="banner"><img src="http://imgfz.com"></div>
-‎<div class="main">
-‎
-‎<!-- REPRODUCTOR CON LA SECCIÓN AL AIRE INCORPORADA -->
-‎<div class="card">
-‎    <h2>🎧 Escúchanos en Vivo</h2>
-‎    <audio id="radioPlayer" controls preload="none"></audio>
-‎    <div class="live">🔴 EN VIVO</div>
-‎    <div id="song-title"><span id="sonic_title">Cargando canción...</span></div>
-‎    
-‎    <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-‎    <h3 style="margin-top:0;">🟢 AL AIRE AHORA</h3>
-‎    <div id="locutor" style="margin-bottom: 5px;"></div>
-‎    <div id="horario"></div>
-‎</div>
-‎
-‎<!-- BOTONES DE REDES Y APP -->
-‎<div class="card buttons">
-‎    <a href="https://google.com" target="_blank">📲 Descargar App</a>
-‎    <a href="https://facebook.com" target="_blank">📘 Facebook</a>
-‎    <a href="https://wa.me" target="_blank">🎤 WhatsApp Oyentes</a>
-‎    <a href="https://wa.me" target="_blank">📢 Publicidad</a>
-‎</div>
-‎
-‎</div>
-‎<section class="events">
-‎<h2>🎉 Entérate de los eventos</h2>
-‎<div class="slider">
-‎<div class="slide active"><img src="http://imgfz.com"></div>
-‎<div class="slide"><img src="http://imgfz.com"></div>
-‎<div class="slide"><img src="http://imgfz.com"></div>
-‎</div>
-‎</section>
-‎<footer>Diseño y desarrollo web por Marcony Clavijo | 942883375</footer>
-‎
-‎<script>
-‎const player=document.getElementById("radioPlayer");
-‎player.src="https://globalstream.pro"+Date.now();
-‎setInterval(()=>{if(typeof sonic_data!=="undefined"&&sonic_data.songtitle){document.getElementById("sonic_title").textContent=sonic_data.songtitle;}},2000);
-‎
-‎let i=0;const slides=document.querySelectorAll(".slide");
-‎setInterval(()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active");},5000);
-‎
-‎function ap(){
-‎    let fecha = new Date();
-‎    let diaSemana = fecha.getDay(); // 0 = Domingo, 6 = Sábado, 1-5 = Lunes a Viernes
-‎    let m = fecha.getHours() * 60 + fecha.getMinutes();
-‎    let n = "";
-‎    let h = "";
-‎
-‎    if (diaSemana === 6) {
-‎        // ==========================================
-‎        // 🗓️ SÁBADOS
-‎        // ==========================================
-‎        if (m >= 240 && m < 360) {
-‎            n = "🎙️ Levántate alegre Sullana";
-‎            h = "04:00 a. m. - 06:00 a. m.";
-‎        } else if (m >= 360 && m < 450) {
-‎            n = "🎙️ Luciano Zapata Palacios \"El Urraco\"";
-‎            h = "06:00 a. m. - 07:30 a. m.";
-‎        } else if (m >= 450 && m < 540) {
-‎            n = "📰 Noticiero La Hora 7";
-‎            h = "07:30 a. m. - 09:00 a. m.";
-‎        } else if (m >= 540 && m < 600) {
-‎            n = "🎵 Percy Reyes";
-‎            h = "09:00 a. m. - 10:00 a. m.";
-‎        } else if (m >= 600 && m < 780) {
-‎            n = "🎙️ Carlos Ramírez";
-‎            h = "10:00 a. m. - 01:00 p. m.";
-‎        } else if (m >= 780 && m < 960) {
-‎            n = "🎙️ El Papacho";
-‎            h = "01:00 p. m. - 04:00 p. m.";
-‎        } else if (m >= 960 && m < 1080) {
-‎            n = "🎙️ Chicho Dueñas";
-‎            h = "04:00 p. m. - 06:00 p. m.";
-‎        } else if (m >= 1080 && m < 1140) {
-‎            n = "🎶 Oscar Balcázar \"La Hora del Recuerdo\"";
-‎            h = "06:00 p. m. - 07:00 p. m.";
-‎        } else if (m >= 1140 && m < 1200) {
-‎            n = "🎧 Viva el Deporte con Pocho Vera";
-‎            h = "07:00 p. m. - 08:00 p. m.";
-‎        } else {
-‎            n = "🎙️ Amanece con Stereo M";
-‎            h = "08:00 p. m. - 04:00 a. m.";
-‎        }
-‎
-‎    } else if (diaSemana === 0) {
-‎        // ==========================================
-‎        // 🗓️ DOMINGOS
-‎        // ==========================================
-‎        if (m >= 240 && m < 480) {
-‎            n = "🎙️ Levántate alegre Sullana";
-‎            h = "04:00 a. m. - 08:00 a. m.";
-‎        } else if (m >= 480 && m < 600) {
-‎            n = "🎙️ Noticiero Panorama Dominical";
-‎            h = "08:00 a. m. - 10:00 a. m.";
-‎        } else if (m >= 600 && m < 720) {
-‎            n = "📰 Micky Rivera El Piloto";
-‎            h = "10:00 a. m. - 12:00 p. m.";
-‎        } else if (m >= 720 && m < 960) {
-‎            n = "🎵 Tardes activas";
-‎            h = "12:00 p. m. - 04:00 p. m.";
-‎        } else {
-‎            n = "🎙️ Amanece con Stereo M";
-‎            h = "04:00 p. m. - 04:00 a. m.";
-‎        }
-‎
-‎    } else {
-‎        // ==========================================
-‎        // 🗓️ LUNES A VIERNES
-‎        // ==========================================
-‎        if (m >= 240 && m < 360) {
-‎            n = "🎙️ Levántate con el pie derecho";
-‎            h = "04:00 a. m. - 06:00 a. m.";
-‎        } else if (m >= 360 && m < 450) {
-‎            n = "🎙️ El Sentimiento del Urraco";
-‎            h = "06:00 a. m. - 07:30 a. m.";
-‎        } else if (m >= 450 && m < 540) {
-‎            n = "📰 Noticiero La Hora 7";
-‎            h = "07:30 a. m. - 09:00 a. m.";
-‎        } else if (m >= 540 && m < 600) {
-‎            n = "🎵 Cañonazos de Oro";
-‎            h = "09:00 a. m. - 10:00 a. m.";
-‎        } else if (m >= 600 && m < 780) {
-‎            n = "🎙️ Carlos Ramírez";
-‎            h = "10:00 a. m. - 01:00 p. m.";
-‎        } else if (m >= 780 && m < 960) {
-‎            n = "🎙️ El Papacho";
-‎            h = "01:00 p. m. - 04:00 p. m.";
-‎        } else if (m >= 960 && m < 1080) {
-‎            n = "🎙️ Chicho Dueñas";
-‎            h = "04:00 p. m. - 06:00 p. m.";
-‎        } else if (m >= 1080 && m < 1140) {
-‎            n = "🎶 Oscar Balcázar \"La Hora del Recuerdo\"";
-‎            h = "06:00 p. m. - 07:00 p. m.";
-‎        } else if (m >= 1140 && m < 1200) {
-‎            n = "🎧 Viva el Deporte con Pocho Vera";
-‎            h = "07:00 p. m. - 08:00 p. m.";
-‎        } else {
-‎            n = "🎙️ Amanece con Stereo M";
-‎            h = "08:00 p. m. - 04:00 a. m.";
-‎        }
-‎    }
-‎
-‎    document.getElementById("locutor").innerHTML = "📻 <b>" + n + "</b>";
-‎    document.getElementById("horario").innerHTML = "🕙 " + h;
-‎}
-‎ap();
-‎setInterval(ap,60000);
-‎</script>
-‎<script id="sonic_js" data-port="8108" src="https://globalstream.pro"></script>
-‎</body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio Stereo M 101.5 FM</title>
+<link href="https://googleapis.com" rel="stylesheet">
+<style>
+:root{--azul:#0b3d91;--amarillo:#ffd700;--rojo:#e60000;--blanco:#fff;--gris:#f5f5f5;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Raleway,sans-serif;background:#eef4ff;color:#222}
+header{background:var(--azul);padding:12px}.navbar{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.logo{width:90px;animation:flotar 2.5s infinite}
+.slogan{color:#ffd700;font-weight:bold;margin-top:8px}
+.banner img{display:block;width:100%;max-height:420px;object-fit:cover}
+.main{max-width:1100px;margin:auto;padding:25px;display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.card{background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 15px rgba(0,0,0,.15)}
+audio{width:100%}
+.live{color:#e60000;font-weight:bold;margin:10px 0}
+#song-title{font-weight:bold;color:#0b3d91;margin-bottom:15px}
+.buttons a{display:block;text-decoration:none;background:var(--amarillo);color:#111;padding:12px;border-radius:30px;text-align:center;margin-bottom:10px;font-weight:bold}
+.events{max-width:1100px;margin:20px auto;padding:0 20px}
+.events h2{text-align:center;color:#0b3d91}
+.slider{position:relative;max-width:420px;margin:0 auto}
+.slide{display:none}
+.slide.active{display:block}
+.slide img{width:100%;border-radius:15px;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:30px}
+@keyframes flotar{50%{transform:translateY(-8px)}}
+@media(max-width:768px){.main{grid-template-columns:1fr}.slider{max-width:320px}}
+</style>
+</head><body>
+<header><div class="navbar"><div class="brand"><img class="logo" src="https://postimg.cc"><div style="color:#fff;font-size:14px">Sullana - Piura</div></div><nav><a style="color:white;margin:10px">Inicio</a><a style="color:white;margin:10px">En Vivo</a><a style="color:white;margin:10px">Eventos</a><a style="color:white;margin:10px">Programación</a></nav></div></header>
+<div class="banner"><img src="http://imgfz.com"></div>
+<div class="main">
+
+<!-- REPRODUCTOR CON LA SECCIÓN AL AIRE INCORPORADA -->
+<div class="card">
+    <h2>🎧 Escúchanos en Vivo</h2>
+    <audio id="radioPlayer" controls preload="none"></audio>
+    <div class="live">🔴 EN VIVO</div>
+    <div id="song-title"><span id="sonic_title">Cargando canción...</span></div>
+    
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+    <h3 style="margin-top:0;">🟢 AL AIRE AHORA</h3>
+    <div id="locutor" style="margin-bottom: 5px;"></div>
+    <div id="horario"></div>
+</div>
+
+<!-- BOTONES DE REDES Y APP -->
+<div class="card buttons">
+    <a href="https://google.com" target="_blank">📲 Descargar App</a>
+    <a href="https://facebook.com" target="_blank">📘 Facebook</a>
+    <a href="https://wa.me" target="_blank">🎤 WhatsApp Oyentes</a>
+    <a href="https://wa.me" target="_blank">📢 Publicidad</a>
+</div>
+
+</div>
+<section class="events">
+<h2>🎉 Entérate de los eventos</h2>
+<div class="slider">
+<div class="slide active"><img src="http://imgfz.com"></div>
+<div class="slide"><img src="http://imgfz.com"></div>
+<div class="slide"><img src="http://imgfz.com"></div>
+</div>
+</section>
+<footer>Diseño y desarrollo web por Marcony Clavijo | 942883375</footer>
+
+<script>
+const player=document.getElementById("radioPlayer");
+player.src="https://globalstream.pro"+Date.now();
+setInterval(()=>{if(typeof sonic_data!=="undefined"&&sonic_data.songtitle){document.getElementById("sonic_title").textContent=sonic_data.songtitle;}},2000);
+
+let i=0;const slides=document.querySelectorAll(".slide");
+setInterval(()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active");},5000);
+
+function ap(){
+    let fecha = new Date();
+    let diaSemana = fecha.getDay(); // 0 = Domingo, 6 = Sábado, 1-5 = Lunes a Viernes
+    let m = fecha.getHours() * 60 + fecha.getMinutes();
+    let n = "";
+    let h = "";
+
+    if (diaSemana === 6) {
+        // ==========================================
+        // 🗓️ SÁBADOS
+        // ==========================================
+        if (m >= 240 && m < 360) {
+            n = "🎙️ Levántate alegre Sullana";
+            h = "04:00 a. m. - 06:00 a. m.";
+        } else if (m >= 360 && m < 450) {
+            n = "🎙️ Luciano Zapata Palacios \"El Urraco\"";
+            h = "06:00 a. m. - 07:30 a. m.";
+        } else if (m >= 450 && m < 540) {
+            n = "📰 Noticiero La Hora 7";
+            h = "07:30 a. m. - 09:00 a. m.";
+        } else if (m >= 540 && m < 600) {
+            n = "🎵 Percy Reyes";
+            h = "09:00 a. m. - 10:00 a. m.";
+        } else if (m >= 600 && m < 780) {
+            n = "🎙️ Carlos Ramírez";
+            h = "10:00 a. m. - 01:00 p. m.";
+        } else if (m >= 780 && m < 960) {
+            n = "🎙️ El Papacho";
+            h = "01:00 p. m. - 04:00 p. m.";
+        } else if (m >= 960 && m < 1080) {
+            n = "🎙️ Chicho Dueñas";
+            h = "04:00 p. m. - 06:00 p. m.";
+        } else if (m >= 1080 && m < 1140) {
+            n = "🎶 Oscar Balcázar \"La Hora del Recuerdo\"";
+            h = "06:00 p. m. - 07:00 p. m.";
+        } else if (m >= 1140 && m < 1200) {
+            n = "🎧 Viva el Deporte con Pocho Vera";
+            h = "07:00 p. m. - 08:00 p. m.";
+        } else {
+            n = "🎙️ Amanece con Stereo M";
+            h = "08:00 p. m. - 04:00 a. m.";
+        }
+
+    } else if (diaSemana === 0) {
+        // ==========================================
+        // 🗓️ DOMINGOS
+        // ==========================================
+        if (m >= 240 && m < 480) {
+            n = "🎙️ Levántate alegre Sullana";
+            h = "04:00 a. m. - 08:00 a. m.";
+        } else if (m >= 480 && m < 600) {
+            n = "🎙️ Noticiero Panorama Dominical";
+            h = "08:00 a. m. - 10:00 a. m.";
+        } else if (m >= 600 && m < 720) {
+            n = "📰 Micky Rivera El Piloto";
+            h = "10:00 a. m. - 12:00 p. m.";
+        } else if (m >= 720 && m < 960) {
+            n = "🎵 Tardes activas";
+            h = "12:00 p. m. - 04:00 p. m.";
+        } else {
+            n = "🎙️ Amanece con Stereo M";
+            h = "04:00 p. m. - 04:00 a. m.";
+        }
+
+    } else {
+        // ==========================================
+        // 🗓️ LUNES A VIERNES
+        // ==========================================
+        if (m >= 240 && m < 360) {
+            n = "🎙️ Levántate con el pie derecho";
+            h = "04:00 a. m. - 06:00 a. m.";
+        } else if (m >= 360 && m < 450) {
+            n = "🎙️ El Sentimiento del Urraco";
+            h = "06:00 a. m. - 07:30 a. m.";
+        } else if (m >= 450 && m < 540) {
+            n = "📰 Noticiero La Hora 7";
+            h = "07:30 a. m. - 09:00 a. m.";
+        } else if (m >= 540 && m < 600) {
+            n = "🎵 Cañonazos de Oro";
+            h = "09:00 a. m. - 10:00 a. m.";
+        } else if (m >= 600 && m < 780) {
+            n = "🎙️ Carlos Ramírez";
+            h = "10:00 a. m. - 01:00 p. m.";
+        } else if (m >= 780 && m < 960) {
+            n = "🎙️ El Papacho";
+            h = "01:00 p. m. - 04:00 p. m.";
+        } else if (m >= 960 && m < 1080) {
+            n = "🎙️ Chicho Dueñas";
+            h = "04:00 p. m. - 06:00 p. m.";
+        } else if (m >= 1080 && m < 1140) {
+            n = "🎶 Oscar Balcázar \"La Hora del Recuerdo\"";
+            h = "06:00 p. m. - 07:00 p. m.";
+        } else if (m >= 1140 && m < 1200) {
+            n = "🎧 Viva el Deporte con Pocho Vera";
+            h = "07:00 p. m. - 08:00 p. m.";
+        } else {
+            n = "🎙️ Amanece con Stereo M";
+            h = "08:00 p. m. - 04:00 a. m.";
+        }
+    }
+
+    document.getElementById("locutor").innerHTML = "📻 <b>" + n + "</b>";
+    document.getElementById("horario").innerHTML = "🕙 " + h;
+}
+ap();
+setInterval(ap,60000);
+</script>
+<script id="sonic_js" data-port="8108" src="https://globalstream.pro"></script>
+</body></html>
