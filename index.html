@@ -9,8 +9,28 @@
 :root{--azul:#0b3d91;--amarillo:#ffd700;--rojo:#e60000;--blanco:#fff;--gris:#f5f5f5;}
 *{box-sizing:border-box}
 body{margin:0;font-family:Raleway,sans-serif;background:#eef4ff;color:#222}
-header{background:var(--azul);padding:12px}.navbar{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
-.logo{width:90px;animation:flotar 2.5s infinite}
+
+/* --- NUEVO HEADER ESTILO HAMBURGUESA (IDÉNTICO A TU EJEMPLO) --- */
+header{background:var(--azul);padding:15px 12px;position:relative}
+.navbar{max-width:1100px;margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.brand{display:flex;flex-direction:column;align-items:center;text-align:center}
+.logo{width:95px;animation:flotar 2.5s infinite;margin-bottom:5px}
+
+/* Botón menú hamburguesa estilizado */
+.menu-toggle{position:absolute;right:10px;top:12px;background:none;border:1px solid rgba(255,255,255,0.4);color:white;font-size:18px;padding:6px 12px;border-radius:6px;cursor:pointer;font-family:Raleway,sans-serif;}
+.menu-toggle:hover{border-color:var(--amarillo);color:var(--amarillo)}
+.nav-links{display:none;width:100%;text-align:center;margin-top:15px;border-top:1px solid rgba(255,255,255,0.1);padding-top:10px}
+.nav-links.active{display:block}
+.nav-links a{display:block;color:white;text-decoration:none;margin:12px 0;font-weight:bold;font-size:16px;transition:0.3s}
+.nav-links a:hover{color:var(--amarillo)}
+
+/* Ajustes para pantallas grandes (Computadoras) */
+@media(min-width:769px){
+  .navbar{flex-direction:row;justify-content:center}
+  .menu-toggle{right:20px;top:20px}
+  .nav-links{position:absolute;top:70px;background:var(--azul);width:200px;right:0;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.3);padding:10px 0;border:1px solid rgba(255,255,255,0.1)}
+}
+
 .slogan{color:#ffd700;font-weight:bold;margin-top:8px}
 .banner img{display:block;width:100%;max-height:420px;object-fit:cover}
 .main{max-width:1100px;margin:auto;padding:25px;display:grid;grid-template-columns:2fr 1fr;gap:20px}
@@ -30,7 +50,27 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
 @media(max-width:768px){.main{grid-template-columns:1fr}.slider{max-width:320px}}
 </style>
 </head><body>
-<header><div class="navbar"><div class="brand"><img class="logo" src="https://postimg.cc"><div style="color:#fff;font-size:14px">Sullana - Piura</div></div><nav><a style="color:white;margin:10px">Inicio</a><a style="color:white;margin:10px">En Vivo</a><a style="color:white;margin:10px">Eventos</a><a style="color:white;margin:10px">Programación</a></nav></div></header>
+
+<header>
+  <div class="navbar">
+    <div class="brand">
+      <img class="logo" src="https://postimg.cc">
+      <div style="color:#fff;font-size:14px;letter-spacing:1px;">SULLANA - PIURA</div>
+    </div>
+    
+    <!-- Botón de Menú con diseño tipo hamburguesa -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    
+    <!-- Enlaces del menú desplegable -->
+    <nav class="nav-links" id="menuLinks">
+      <a href="#">Inicio</a>
+      <a href="#">En Vivo</a>
+      <a href="#">Eventos</a>
+      <a href="#">Programación</a>
+    </nav>
+  </div>
+</header>
+
 <div class="banner"><img src="http://imgfz.com"></div>
 <div class="main">
 
@@ -67,6 +107,12 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
 <footer>Diseño y desarrollo web por Marcony Clavijo | 942883375</footer>
 
 <script>
+// Función del menú
+function toggleMenu() {
+    const links = document.getElementById("menuLinks");
+    links.classList.toggle("active");
+}
+
 const player=document.getElementById("radioPlayer");
 player.src="https://globalstream.pro"+Date.now();
 setInterval(()=>{if(typeof sonic_data!=="undefined"&&sonic_data.songtitle){document.getElementById("sonic_title").textContent=sonic_data.songtitle;}},2000);
@@ -76,15 +122,12 @@ setInterval(()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slid
 
 function ap(){
     let fecha = new Date();
-    let diaSemana = fecha.getDay(); // 0 = Domingo, 6 = Sábado, 1-5 = Lunes a Viernes
+    let diaSemana = fecha.getDay(); 
     let m = fecha.getHours() * 60 + fecha.getMinutes();
     let n = "";
     let h = "";
 
     if (diaSemana === 6) {
-        // ==========================================
-        // 🗓️ SÁBADOS
-        // ==========================================
         if (m >= 240 && m < 360) {
             n = "🎙️ Levántate alegre Sullana";
             h = "04:00 a. m. - 06:00 a. m.";
@@ -116,11 +159,7 @@ function ap(){
             n = "🎙️ Amanece con Stereo M";
             h = "08:00 p. m. - 04:00 a. m.";
         }
-
     } else if (diaSemana === 0) {
-        // ==========================================
-        // 🗓️ DOMINGOS
-        // ==========================================
         if (m >= 240 && m < 480) {
             n = "🎙️ Levántate alegre Sullana";
             h = "04:00 a. m. - 08:00 a. m.";
@@ -137,11 +176,7 @@ function ap(){
             n = "🎙️ Amanece con Stereo M";
             h = "04:00 p. m. - 04:00 a. m.";
         }
-
     } else {
-        // ==========================================
-        // 🗓️ LUNES A VIERNES
-        // ==========================================
         if (m >= 240 && m < 360) {
             n = "🎙️ Levántate con el pie derecho";
             h = "04:00 a. m. - 06:00 a. m.";
