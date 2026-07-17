@@ -55,7 +55,7 @@ player.src="https://sonic.globalstream.pro/8108/stream?t="+Date.now();
 setInterval(()=>{if(typeof sonic_data!=="undefined"&&sonic_data.songtitle){document.getElementById("sonic_title").textContent=sonic_data.songtitle;}},2000);
 let i=0;const slides=document.querySelectorAll(".slide");
 setInterval(()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active");},5000);
-function ap(){let m=new Date().getHours()*60+new Date().getMinutes(),n="Programación Stereo M",h="09:00 p. m. - 04:00 a. m.";if(m>=360&&m<540){n="Luciano Zapata";h="06:00 a. m. - 09:00 a. m."}else if(m>=600&&m<780){n="Erick Sánchez";h="10:00 a. m. - 01:00 p. m."}document.getElementById("locutor").innerHTML="📻 <b>"+n+"</b>";document.getElementById("horario").innerHTML="🕙 "+h;}ap();setInterval(ap,60000);
+function ap(){let m=new Date().getHours()*60+new Date().getMinutes(),n="Amanece con Stereo M",h="09:00 p. m. - 04:00 a. m.";if(m>=360&&m<540){n="Luciano Zapata";h="06:00 a. m. - 09:00 a. m."}else if(m>=600&&m<780){n="Carlos Ramírez";h="10:00 a. m. - 01:00 p. m."}document.getElementById("locutor").innerHTML="📻 <b>"+n+"</b>";document.getElementById("horario").innerHTML="🕙 "+h;}ap();setInterval(ap,60000);
 </script>
 <script id="sonic_js" data-port="8108" src="https://sonic.globalstream.pro/cp/widgets.js?r=906"></script>
 </body></html>
