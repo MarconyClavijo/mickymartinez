@@ -41,7 +41,6 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
     <div class="live">🔴 EN VIVO</div>
     <div id="song-title"><span id="sonic_title">Cargando canción...</span></div>
     
-    <!-- Se movió esta sección aquí adentro -->
     <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
     <h3 style="margin-top:0;">🟢 AL AIRE AHORA</h3>
     <div id="locutor" style="margin-bottom: 5px;"></div>
@@ -66,13 +65,88 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
 </div>
 </section>
 <footer>Diseño y desarrollo web por Marcony Clavijo | 942883375</footer>
+
 <script>
 const player=document.getElementById("radioPlayer");
 player.src="https://sonic.globalstream.pro/8108/stream?t="+Date.now();
 setInterval(()=>{if(typeof sonic_data!=="undefined"&&sonic_data.songtitle){document.getElementById("sonic_title").textContent=sonic_data.songtitle;}},2000);
+
 let i=0;const slides=document.querySelectorAll(".slide");
 setInterval(()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active");},5000);
-function ap(){let m=new Date().getHours()*60+new Date().getMinutes(),n="Amanece con Stereo M",h="09:00 p. m. - 04:00 a. m.";if(m>=360&&m<540){n="Luciano Zapata";h="06:00 a. m. - 09:00 a. m."}else if(m>=600&&m<780){n="Carlos Ramírez";h="10:00 a. m. - 01:00 p. m."}document.getElementById("locutor").innerHTML="📻 <b>"+n+"</b>";document.getElementById("horario").innerHTML="🕙 "+h;}ap();setInterval(ap,60000);
+
+function ap(){
+    let fecha = new Date();
+    let diaSemana = fecha.getDay(); // 0 = Domingo, 6 = Sábado, 1-5 = Lunes a Viernes
+    let m = fecha.getHours() * 60 + fecha.getMinutes();
+    let n = "";
+    let h = "";
+
+    if (diaSemana === 6) {
+        // ==========================================
+        // 🗓️ SÁBADOS (Escribe aquí tus programas)
+        // ==========================================
+        if (m >= 360 && m < 540) { 
+            n = "🎙️ Programa de Sábado Mañana";
+            h = "06:00 a. m. - 09:00 a. m.";
+        } else {
+            n = "🎙️ Fin de Semana con Stereo M";
+            h = "Horario Continuado";
+        }
+
+    } else if (diaSemana === 0) {
+        // ==========================================
+        // 🗓️ DOMINGOS (Escribe aquí tus programas)
+        // ==========================================
+        if (m >= 480 && m < 720) { 
+            n = "🎙️ Domingo Especial";
+            h = "08:00 a. m. - 12:00 p. m.";
+        } else {
+            n = "🎙️ Domingo en Stereo M";
+            h = "Horario Continuado";
+        }
+
+    } else {
+        // ==========================================
+        // 🗓️ LUNES A VIERNES
+        // ==========================================
+        if (m >= 240 && m < 360) {
+            n = "🎙️ Levántate con el pie derecho";
+            h = "04:00 a. m. - 06:00 a. m.";
+        } else if (m >= 360 && m < 450) {
+            n = "🎙️ El Sentimiento del Urraco";
+            h = "06:00 a. m. - 07:30 a. m.";
+        } else if (m >= 450 && m < 540) {
+            n = "📰 Noticiero La Hora 7";
+            h = "07:30 a. m. - 09:00 a. m.";
+        } else if (m >= 540 && m < 600) {
+            n = "🎵 Cañonazos de Oro";
+            h = "09:00 a. m. - 10:00 a. m.";
+        } else if (m >= 600 && m < 780) {
+            n = "🎙️ Carlos Ramírez";
+            h = "10:00 a. m. - 01:00 p. m.";
+        } else if (m >= 780 && m < 960) {
+            n = "🎙️ El Papacho";
+            h = "01:00 p. m. - 04:00 p. m.";
+        } else if (m >= 960 && m < 1080) {
+            n = "🎙️ Chicho Dueñas";
+            h = "04:00 p. m. - 06:00 p. m.";
+        } else if (m >= 1080 && m < 1140) {
+            n = "🎶 Oscar Balcázar \"La Hora del Recuerdo\"";
+            h = "06:00 p. m. - 07:00 p. m.";
+        } else if (m >= 1140 && m < 1200) {
+            n = "🎧 Viva el Deporte con Pocho Vera";
+            h = "07:00 p. m. - 08:00 p. m.";
+        } else {
+            n = "🎙️ Amanece con Stereo M";
+            h = "08:00 p. m. - 04:00 a. m.";
+        }
+    }
+
+    document.getElementById("locutor").innerHTML = "📻 <b>" + n + "</b>";
+    document.getElementById("horario").innerHTML = "🕙 " + h;
+}
+ap();
+setInterval(ap,60000);
 </script>
 <script id="sonic_js" data-port="8108" src="https://sonic.globalstream.pro/cp/widgets.js?r=906"></script>
 </body></html>
