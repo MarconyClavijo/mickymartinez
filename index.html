@@ -10,15 +10,14 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:Raleway,sans-serif;background:#eef4ff;color:#222}
 
-/* --- NUEVO HEADER ESTILO HAMBURGUESA (IDÉNTICO A TU EJEMPLO) --- */
+/* --- NUEVO HEADER TOTALMENTE CENTRADO Y ADAPTABLE --- */
 header{background:var(--azul);padding:15px 12px;position:relative}
 .navbar{max-width:1100px;margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
 .brand{display:flex;flex-direction:column;align-items:center;text-align:center}
 .logo{width:95px;animation:flotar 2.5s infinite;margin-bottom:5px}
 
-/* Botón menú hamburguesa estilizado */
-.menu-toggle{position:absolute;right:10px;top:12px;background:none;border:1px solid rgba(255,255,255,0.4);color:white;font-size:18px;padding:6px 12px;border-radius:6px;cursor:pointer;font-family:Raleway,sans-serif;}
-.menu-toggle:hover{border-color:var(--amarillo);color:var(--amarillo)}
+/* Botón de menú estilo hamburguesa */
+.menu-toggle{position:absolute;right:10px;top:15px;background:none;border:none;color:white;font-size:22px;cursor:pointer;font-family:Raleway,sans-serif;font-weight:bold}
 .nav-links{display:none;width:100%;text-align:center;margin-top:15px;border-top:1px solid rgba(255,255,255,0.1);padding-top:10px}
 .nav-links.active{display:block}
 .nav-links a{display:block;color:white;text-decoration:none;margin:12px 0;font-weight:bold;font-size:16px;transition:0.3s}
@@ -27,7 +26,7 @@ header{background:var(--azul);padding:15px 12px;position:relative}
 /* Ajustes para pantallas grandes (Computadoras) */
 @media(min-width:769px){
   .navbar{flex-direction:row;justify-content:center}
-  .menu-toggle{right:20px;top:20px}
+  .menu-toggle{right:20px;top:25px}
   .nav-links{position:absolute;top:70px;background:var(--azul);width:200px;right:0;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.3);padding:10px 0;border:1px solid rgba(255,255,255,0.1)}
 }
 
@@ -58,10 +57,10 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
       <div style="color:#fff;font-size:14px;letter-spacing:1px;">SULLANA - PIURA</div>
     </div>
     
-    <!-- Botón de Menú con diseño tipo hamburguesa -->
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <!-- Botón único de Menú -->
+    <button class="menu-toggle" onclick="toggleMenu()">Menú ☰</button>
     
-    <!-- Enlaces del menú desplegable -->
+    <!-- Enlaces ocultos que aparecen al presionar el menú -->
     <nav class="nav-links" id="menuLinks">
       <a href="#">Inicio</a>
       <a href="#">En Vivo</a>
@@ -74,7 +73,6 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
 <div class="banner"><img src="http://imgfz.com"></div>
 <div class="main">
 
-<!-- REPRODUCTOR CON LA SECCIÓN AL AIRE INCORPORADA -->
 <div class="card">
     <h2>🎧 Escúchanos en Vivo</h2>
     <audio id="radioPlayer" controls preload="none"></audio>
@@ -87,7 +85,6 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
     <div id="horario"></div>
 </div>
 
-<!-- BOTONES DE REDES Y APP -->
 <div class="card buttons">
     <a href="https://google.com" target="_blank">📲 Descargar App</a>
     <a href="https://facebook.com" target="_blank">📘 Facebook</a>
@@ -107,7 +104,7 @@ footer{background:#0b3d91;color:#fff;text-align:center;padding:18px;margin-top:3
 <footer>Diseño y desarrollo web por Marcony Clavijo | 942883375</footer>
 
 <script>
-// Función del menú
+// --- FUNCIÓN PARA MOSTRAR/OCULTAR EL MENÚ ---
 function toggleMenu() {
     const links = document.getElementById("menuLinks");
     links.classList.toggle("active");
@@ -168,7 +165,7 @@ function ap(){
             h = "08:00 a. m. - 10:00 a. m.";
         } else if (m >= 600 && m < 720) {
             n = "📰 Micky Rivera El Piloto";
-            h = "10:00 a. m. - 12:00 p. m.";
+            h = "10:00 a. m. - 12:00 p. p.";
         } else if (m >= 720 && m < 960) {
             n = "🎵 Tardes activas";
             h = "12:00 p. m. - 04:00 p. m.";
