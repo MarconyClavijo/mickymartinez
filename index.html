@@ -770,9 +770,91 @@ function toggleMenu() {
     links.classList.toggle("active");
 }
 
-const player=document.getElementById("radioPlayer");
-player.src="https://sonic.globalstream.pro/8108/stream?t="+Date.now();
-setInterval(()=>{if(typeof sonic_data!=="undefined"&&sonic_data.songtitle){document.getElementById("sonic_title").textContent=sonic_data.songtitle;}},2000);
+// ==========================================
+// REPRODUCTOR RADIO STEREO M
+// PLAY / STOP
+// ==========================================
+
+const player = document.getElementById("radioPlayer");
+const playStopBtn = document.getElementById("playStopBtn");
+
+const STREAM_URL = "https://sonic.globalstream.pro/8108/stream";
+
+let radioPlaying = false;
+
+
+// ▶ PLAY
+playStopBtn.addEventListener("click", function () {
+
+    if (!radioPlaying) {
+
+        // Nueva conexión al streaming
+        player.src = STREAM_URL + "?nocache=" + Date.now();
+
+        player.load();
+
+        player.play()
+            .then(() => {
+
+                radioPlaying = true;
+
+                // Cambiar botón a STOP
+                playStopBtn.textContent = "⏹";
+                playStopBtn.setAttribute("aria-label", "Detener radio");
+
+            })
+            .catch(error => {
+
+                console.log("No se pudo reproducir:", error);
+
+            });
+
+    } else {
+
+        // ⏹ STOP COMPLETO
+        player.pause();
+
+        // Eliminar la fuente del audio
+        player.removeAttribute("src");
+
+        // Liberar el buffer
+        player.load();
+
+        radioPlaying = false;
+
+        // Volver a PLAY
+        playStopBtn.textContent = "▶";
+        playStopBtn.setAttribute("aria-label", "Reproducir radio");
+
+    }
+
+});
+
+
+// Si el streaming termina o se desconecta
+player.addEventListener("ended", function () {
+
+    radioPlaying = false;
+
+    playStopBtn.textContent = "▶";
+
+});
+
+
+// 🎵 ACTUALIZAR CANCIÓN
+setInterval(() => {
+
+    if (
+        typeof sonic_data !== "undefined" &&
+        sonic_data.songtitle
+    ) {
+
+        document.getElementById("sonic_title").textContent =
+            sonic_data.songtitle;
+
+    }
+
+}, 2000);
 let i=0;const slides=document.querySelectorAll(".slide");
 setInterval(()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active");},5000);
 
