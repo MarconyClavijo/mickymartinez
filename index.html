@@ -721,7 +721,17 @@ function abrirEvento(id) {
         evento.classList.remove("active");
     });
 
-    document.getElementById(id).classList.add("active");
+    const evento = document.getElementById(id);
+
+    if (evento) {
+        evento.classList.add("active");
+
+        // Cambia el enlace de la página
+        window.location.hash = id;
+
+        // Lleva al inicio del evento
+        evento.scrollIntoView({behavior: "smooth", block: "start"});
+    }
 }
 
 function cerrarEvento() {
@@ -730,7 +740,27 @@ function cerrarEvento() {
     });
 
     document.getElementById("listaEventos").style.display = "grid";
+
+    // Quita el #evento del enlace
+    history.replaceState(null, null, window.location.pathname);
+
+    // Regresa a la sección de eventos
+    document.getElementById("eventos").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 }
+function abrirEventoDesdeEnlace() {
+    const id = window.location.hash.substring(1);
+
+    if (id && document.getElementById(id)) {
+        abrirEvento(id);
+    }
+}
+abrirEventoDesdeEnlace();
+
+window.addEventListener("hashchange", abrirEventoDesdeEnlace);
+
 </script>
 <script id="sonic_js" data-port="8108" src="https://sonic.globalstream.pro/cp/widgets.js?r=906"></script>
 </body></html>
